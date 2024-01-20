@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mkconlife.gitee.io/mkconlife/404.html</loc>
+    <loc>https://mkconlife.gitee.io/404.html</loc>
     
     <lastmod>2024-01-20</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://mkconlife.gitee.io/mkconlife/article/fc27d993/</loc>
+    <loc>https://mkconlife.gitee.io/article/fc27d993/</loc>
     
     <lastmod>2023-07-05</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://mkconlife.gitee.io/mkconlife/article/37988/</loc>
+    <loc>https://mkconlife.gitee.io/article/37988/</loc>
     
     <lastmod>2023-07-04</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://mkconlife.gitee.io/mkconlife/links/index.html</loc>
+    <loc>https://mkconlife.gitee.io/links/index.html</loc>
     
     <lastmod>2023-06-29</lastmod>
     
@@ -39,7 +39,7 @@
   
 
   <url>
-    <loc>https://mkconlife.gitee.io/mkconlife</loc>
+    <loc>https://mkconlife.gitee.io/</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
