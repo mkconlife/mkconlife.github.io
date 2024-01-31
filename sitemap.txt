@@ -5,4 +5,4 @@ https://mkconlife.gitee.io/404.html
 https://mkconlife.gitee.io/article/37988/
 https://mkconlife.gitee.io/links/index.html
 https://mkconlife.gitee.io/
-https://mkconlife.gitee.io/tags/Archlinux/
+https://mkconlife.gitee.io/categories/Archlinux/
