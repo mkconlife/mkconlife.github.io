@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mkconlife.gitee.io/article/fc27d993/</loc>
+    
+    <lastmod>2024-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mkconlife.gitee.io/article/23109/</loc>
+    
+    <lastmod>2024-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mkconlife.gitee.io/article/14433/</loc>
     
     <lastmod>2024-01-21</lastmod>
@@ -14,15 +32,6 @@
     <loc>https://mkconlife.gitee.io/404.html</loc>
     
     <lastmod>2024-01-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mkconlife.gitee.io/article/fc27d993/</loc>
-    
-    <lastmod>2023-07-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,11 +58,18 @@
 
   <url>
     <loc>https://mkconlife.gitee.io/</loc>
-    <lastmod>2024-01-21</lastmod>
+    <lastmod>2024-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://mkconlife.gitee.io/tags/Archlinux/</loc>
+    <lastmod>2024-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 
   
