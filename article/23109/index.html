@@ -7,17 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Archlinux 使用过程遇到的一些坑这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助本文章会持续更新 1.滚挂1-a.描述：我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，去网上找了资料，问题是长时间不更新并且更新的时候使用的是pacman -Sy">
+<meta name="description" content="Archlinux 使用过程遇到的一些问题这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助本文章会持续更新 1.滚挂我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。 1-a.问题描述：这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因(我暂时还没有遇到过:D) 1-b 问题剖析去网上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Archlinux使用过程遇到的一些坑">
 <meta property="og:url" content="https://mkconlife.gitee.io/article/23109/index.html">
 <meta property="og:site_name" content="Mkconlife&#39;s Blog">
-<meta property="og:description" content="Archlinux 使用过程遇到的一些坑这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助本文章会持续更新 1.滚挂1-a.描述：我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，去网上找了资料，问题是长时间不更新并且更新的时候使用的是pacman -Sy">
+<meta property="og:description" content="Archlinux 使用过程遇到的一些问题这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助本文章会持续更新 1.滚挂我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。 1-a.问题描述：这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因(我暂时还没有遇到过:D) 1-b 问题剖析去网上">
 <meta property="og:locale">
+<meta property="og:image" content="https://mkconlife.gitee.io/img/404.jpg">
+<meta property="og:image" content="https://mkconlife.gitee.io/img/404.jpg">
+<meta property="og:image" content="https://mkconlife.gitee.io/img/404.jpg">
 <meta property="article:published_time" content="2024-01-31T09:48:14.000Z">
-<meta property="article:modified_time" content="2024-01-31T12:52:23.497Z">
+<meta property="article:modified_time" content="2024-02-01T10:55:32.666Z">
 <meta property="article:author" content="Mkconlife">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mkconlife.gitee.io/img/404.jpg">
 
 
 <title >Archlinux使用过程遇到的一些坑</title>
@@ -59,7 +63,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"mkconlife.gitee.io","author":"Mkconlife","root":"/","typed_text":["a senior high school student"],"theme_version":"2.1.10","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":true,"hidden":"failure.ico","showText":"欢迎回来","hideText":"快回来QAQ"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":"mac","copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"05/01/2023 9:32:16","prefix":"博客已萌萌哒运行 undefined 天"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-01-31 20:52:23"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-02-01 18:55:32"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.10" id="trm-switch-style">
@@ -348,16 +352,25 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="Archlinux-使用过程遇到的一些坑"><a href="#Archlinux-使用过程遇到的一些坑" class="headerlink" title="Archlinux 使用过程遇到的一些坑"></a>Archlinux 使用过程遇到的一些坑</h1><p>这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助<br><em><strong>本文章会持续更新</strong></em></p>
-<h2 id="1-滚挂"><a href="#1-滚挂" class="headerlink" title="1.滚挂"></a>1.滚挂</h2><h3 id="1-a-描述："><a href="#1-a-描述：" class="headerlink" title="1-a.描述："></a>1-a.描述：</h3><p>我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，去网上找了资料，问题是长时间不更新并且更新的时候使用的是<code>pacman -Syyu</code> </p>
-<h3 id="1-b-解决方法"><a href="#1-b-解决方法" class="headerlink" title="1-b.解决方法:"></a>1-b.解决方法:</h3><h3 id="1-b-1-boot-分区无法识别"><a href="#1-b-1-boot-分区无法识别" class="headerlink" title="1-b-1.boot 分区无法识别"></a>1-b-1.boot 分区无法识别</h3><p>做一个 Archlinux 的 liveCD，进入 archiso 之后</p>
+    <h1 id="Archlinux-使用过程遇到的一些问题"><a href="#Archlinux-使用过程遇到的一些问题" class="headerlink" title="Archlinux 使用过程遇到的一些问题"></a>Archlinux 使用过程遇到的一些问题</h1><p>这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助<br><em><strong>本文章会持续更新</strong></em></p>
+<h2 id="1-滚挂"><a href="#1-滚挂" class="headerlink" title="1.滚挂"></a>1.滚挂</h2><p>我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。</p>
+<h3 id="1-a-问题描述："><a href="#1-a-问题描述：" class="headerlink" title="1-a.问题描述："></a>1-a.问题描述：</h3><p>这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因(我暂时还没有遇到过:D)</p>
+<h3 id="1-b-问题剖析"><a href="#1-b-问题剖析" class="headerlink" title="1-b 问题剖析"></a>1-b 问题剖析</h3><p>去网上找了资料，问题是长时间不更新系统并且更新系统的时候使用的是<code>pacman -Syyu</code> </p>
+<h3 id="1-c-解决方法"><a href="#1-c-解决方法" class="headerlink" title="1-c.解决方法:"></a>1-c.解决方法:</h3><h3 id="1-c-1-boot-分区无法识别"><a href="#1-c-1-boot-分区无法识别" class="headerlink" title="1-c-1.boot 分区无法识别"></a>1-c-1.boot 分区无法识别</h3><p>做一个 Archlinux 的 liveCD，进入 archiso 之后</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/系统硬盘号 /mnt</span><br><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure>
 
 <p>进入系统,<code>pacman -Sy ntfs-3g</code> 然后<code>exit</code>,<code>reboot</code> 完事！</p>
-<h3 id="1-b-2-内核出错"><a href="#1-b-2-内核出错" class="headerlink" title="1-b-2.内核出错"></a>1-b-2.内核出错</h3><p>这个我起初处理的还是比较头疼的</p>
+<h3 id="1-c-2-内核出错"><a href="#1-c-2-内核出错" class="headerlink" title="1-c-2.内核出错"></a>1-c-2.内核出错</h3><p>后续整理</p>
 <h3 id="1-b-3-避免问题复发"><a href="#1-b-3-避免问题复发" class="headerlink" title="1-b-3.避免问题复发"></a>1-b-3.避免问题复发</h3><p>①每次进行系统更新时使用<code>pacman -Syu</code>而不是-Syyu<br>②如果更新文件很多，一时半会找不到内核是否需要更新，那么在更新完之后可以执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install /dev/sda &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg（传统BIOS启动模式）</span><br></pre></td></tr></table></figure>
 
+<h2 id="2-X11无法启动"><a href="#2-X11无法启动" class="headerlink" title="2.X11无法启动"></a>2.X11无法启动</h2><p><strong>只针对使用Xorg图形管理器的朋友</strong><br>有些朋友可能和我一样，不喜欢让xorg自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面</p>
+<h3 id="2-a-问题描述"><a href="#2-a-问题描述" class="headerlink" title="2-a.问题描述"></a>2-a.问题描述</h3><p>在tty中普通用户&#x2F;超级用户运行<code>startx</code>无法启动，显示.Xauthority 不可写(<code>/home/xxx/.Xauthority not writeable</code>)，重启后再次运行该命令显示锁定.Xauthority文件超时(<code>timeout in locking authority file /home/xxx/.Xauthority</code>)，等待许久xorg服务终于启动，但是黑屏<br>(为了演示我重新在sudo下运行了startx，但是在重启后我startx之后连按三次<code>Cltr+c</code>居然成功的进入图形界面了QWQ,对应的图片是我第一次出事故的时候拍的)<br><img src="/img/startxnotwriteable.jpg" alt="Xauthority不可写" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/x11err.jpg" alt="锁定Xauthority超市" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h3 id="2-b-问题剖析"><a href="#2-b-问题剖析" class="headerlink" title="2-b.问题剖析"></a>2-b.问题剖析</h3><p>在root权限下误输入了startx,导致&#x2F;home&#x2F;xxx&#x2F;.Xauthority文件权限被更改，普通用户无权访问<br><img src="/img/sudostartx.png" alt="样例" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h3 id="2-c-解决方法"><a href="#2-c-解决方法" class="headerlink" title="2-c.解决方法"></a>2-c.解决方法</h3><p>在普通用户模式下运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown 你的用户名 ~/.Xauthority</span><br><span class="line">chmod 777 ~/.Xauthority</span><br></pre></td></tr></table></figure>
+
+<p>之后<code>startx</code>完事</p>
 
 </article>
     
@@ -448,7 +461,7 @@
 				</span>
       </div>
       <div class="trm-post-toc-content">
-        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="Archlinux 使用过程遇到的一些坑"><a rel="nofollow" class="trm-toc-link" href="#Archlinux-使用过程遇到的一些坑"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">Archlinux 使用过程遇到的一些坑</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-2" title="1.滚挂"><a rel="nofollow" class="trm-toc-link" href="#1-滚挂"><span class="trm-toc-number">1.1.</span> <span class="trm-toc-text">1.滚挂</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="1-a.描述："><a rel="nofollow" class="trm-toc-link" href="#1-a-描述："><span class="trm-toc-number">1.1.1.</span> <span class="trm-toc-text">1-a.描述：</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b.解决方法:"><a rel="nofollow" class="trm-toc-link" href="#1-b-解决方法"><span class="trm-toc-number">1.1.2.</span> <span class="trm-toc-text">1-b.解决方法:</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b-1.boot 分区无法识别"><a rel="nofollow" class="trm-toc-link" href="#1-b-1-boot-分区无法识别"><span class="trm-toc-number">1.1.3.</span> <span class="trm-toc-text">1-b-1.boot 分区无法识别</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b-2.内核出错"><a rel="nofollow" class="trm-toc-link" href="#1-b-2-内核出错"><span class="trm-toc-number">1.1.4.</span> <span class="trm-toc-text">1-b-2.内核出错</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b-3.避免问题复发"><a rel="nofollow" class="trm-toc-link" href="#1-b-3-避免问题复发"><span class="trm-toc-number">1.1.5.</span> <span class="trm-toc-text">1-b-3.避免问题复发</span></a></li></ol></li></ol></li></ol>
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="Archlinux 使用过程遇到的一些问题"><a rel="nofollow" class="trm-toc-link" href="#Archlinux-使用过程遇到的一些问题"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">Archlinux 使用过程遇到的一些问题</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-2" title="1.滚挂"><a rel="nofollow" class="trm-toc-link" href="#1-滚挂"><span class="trm-toc-number">1.1.</span> <span class="trm-toc-text">1.滚挂</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="1-a.问题描述："><a rel="nofollow" class="trm-toc-link" href="#1-a-问题描述："><span class="trm-toc-number">1.1.1.</span> <span class="trm-toc-text">1-a.问题描述：</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b 问题剖析"><a rel="nofollow" class="trm-toc-link" href="#1-b-问题剖析"><span class="trm-toc-number">1.1.2.</span> <span class="trm-toc-text">1-b 问题剖析</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-c.解决方法:"><a rel="nofollow" class="trm-toc-link" href="#1-c-解决方法"><span class="trm-toc-number">1.1.3.</span> <span class="trm-toc-text">1-c.解决方法:</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-c-1.boot 分区无法识别"><a rel="nofollow" class="trm-toc-link" href="#1-c-1-boot-分区无法识别"><span class="trm-toc-number">1.1.4.</span> <span class="trm-toc-text">1-c-1.boot 分区无法识别</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-c-2.内核出错"><a rel="nofollow" class="trm-toc-link" href="#1-c-2-内核出错"><span class="trm-toc-number">1.1.5.</span> <span class="trm-toc-text">1-c-2.内核出错</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1-b-3.避免问题复发"><a rel="nofollow" class="trm-toc-link" href="#1-b-3-避免问题复发"><span class="trm-toc-number">1.1.6.</span> <span class="trm-toc-text">1-b-3.避免问题复发</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="2.X11无法启动"><a rel="nofollow" class="trm-toc-link" href="#2-X11无法启动"><span class="trm-toc-number">1.2.</span> <span class="trm-toc-text">2.X11无法启动</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="2-a.问题描述"><a rel="nofollow" class="trm-toc-link" href="#2-a-问题描述"><span class="trm-toc-number">1.2.1.</span> <span class="trm-toc-text">2-a.问题描述</span></a></li><li class="trm-toc-item trm-toc-level-3" title="2-b.问题剖析"><a rel="nofollow" class="trm-toc-link" href="#2-b-问题剖析"><span class="trm-toc-number">1.2.2.</span> <span class="trm-toc-text">2-b.问题剖析</span></a></li><li class="trm-toc-item trm-toc-level-3" title="2-c.解决方法"><a rel="nofollow" class="trm-toc-link" href="#2-c-解决方法"><span class="trm-toc-number">1.2.3.</span> <span class="trm-toc-text">2-c.解决方法</span></a></li></ol></li></ol></li></ol>
       </div>
     </div>
 
