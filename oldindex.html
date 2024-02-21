@@ -1,0 +1,69 @@
+<html>
+<!DOCTYPE html><!--头文字是html格式(有没有这个好像无所谓(对我来说qwq))-->
+    <head>
+        <link rel="stylesheet" href="styles.css"> 
+        <meta charset="UTF-8"><!--格式化文字为UTF-8-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--让IE浏览器以最新的标准来渲染网页-->
+        <title>欢迎来到此页</title>
+        <base target="_blank"><!--链接在新标签页打开-->
+    </head>
+        <!--设置绿色的渐变色-->
+        <body>
+            <h1 align="center"><!--居中对齐-->Welcome!</h1>
+            <hr>
+        <!--输出实时时间-->
+        <h3><div id="time"></div></h3>
+        <script>
+            function refreshTime() {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                var amPm = hours >= 12 ? 'PM' : 'AM';
+
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                seconds = seconds < 10 ? '0'+seconds : seconds;
+
+                var timeString = '现在的时间为' + hours + ':' + minutes + ':' + seconds + ' ' + amPm;
+    
+                document.getElementById('time').innerText = timeString;
+            }
+
+            refreshTime();
+
+            setInterval(refreshTime, 1000); 
+        </script>           
+            <hr>
+            <h1 align="center">欢迎访问我的个人博客</h1>
+            <h2 align="center">https://mkconlife.gitee.io/</h2>
+            <hr>
+            <h2 align="center">目前这里主要是推荐一些我感觉比较不错的网站,仅供参考QWQ!</h2>
+            <hr><!--一条横线-->
+            <a href="https://www.runoob.com/" > 1.新手练习编程的好去处</a>
+            <p></p><!--换行-->
+            <img src="img/runoob.png" width="750" height="500"/><!--宽度750,高度550--> 
+            <p>对编程新手非常友好的一个网站,各类知识点齐全,还可以进行演练</p>
+            <hr>
+            <a href="http://zygxsq.cn/github/">2.github项目加速下载</a>
+            <p></p>
+            <img src="img/githubdownload.png" width="750" height="500"/>
+            <p>非常不错的一个网站,当项目文件太大的时候并且手边没有梯子的时候值得一试</p>
+            <hr>
+            <a href="https://monkeytype.com">3.真正提升打字效率的网站_</a>
+            <p></p>
+            <img src="img/monkeytype.png" width="750" height="500"/>
+            <p>界面美观简洁大方,没有什么乱七八糟的广告,功能全面丰富测出的数据也很全面</p>
+            <hr>
+            <a href="http://zhongguose.com/">4.中国味调色板</a>
+            <p></p>
+            <img src="img/chinesecolors.png" width="750" height="500"/>
+            <p>在设计网页的时候用得到!</p>
+            <hr>
+            <a href="https://www.x6g.com/"></a>
+            <img src="img/xiaodao.png" width="750" height="500"/>
+            <p>在一片广告的外衣之下,内藏着有许多破解的软件和一些福利和网站源码,最爱的网站之一!</p>
+            <hr>
+        </body>
+</html> 
