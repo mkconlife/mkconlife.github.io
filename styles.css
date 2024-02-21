@@ -1,0 +1,65 @@
+  /* 设置页面背景颜色 */
+  body {
+    background: linear-gradient(to right, green , yellowgreen);
+  }
+  
+  /* 标题样式 */
+  h1, h2 {
+    text-align: center; 
+    color: #f6f5f5;
+  }
+  
+  /* 段落样式 */
+  p {
+    line-height: 1.5;
+    text-indent: 2em;
+  }
+  
+  /* 链接样式 */
+  a {
+    color: #004d95;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #001d3f;
+  }
+  
+  /* 图片样式 */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* 页面布局 */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.1);
+  }
+  
+  /* 清除浮动 */
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;  
+  }
+  img {
+    border-radius: 10px; 
+  }
+  /* 响应式布局 */
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+  }
+
