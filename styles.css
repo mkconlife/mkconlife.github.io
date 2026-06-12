@@ -1,0 +1,65 @@
+  /* ����ҳ�汳����ɫ */
+  body {
+    background: linear-gradient(to right, green , yellowgreen);
+  }
+  
+  /* ������ʽ */
+  h1, h2 {
+    text-align: center; 
+    color: #f6f5f5;
+  }
+  
+  /* ������ʽ */
+  p {
+    line-height: 1.5;
+    text-indent: 2em;
+  }
+  
+  /* ������ʽ */
+  a {
+    color: #004d95;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #001d3f;
+  }
+  
+  /* ͼƬ��ʽ */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* ҳ�沼�� */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.1);
+  }
+  
+  /* ������� */
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;  
+  }
+  img {
+    border-radius: 10px; 
+  }
+  /* ��Ӧʽ���� */
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+  }
+
