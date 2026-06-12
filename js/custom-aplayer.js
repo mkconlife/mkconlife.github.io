@@ -3,7 +3,7 @@
 
     var container = document.createElement('div');
     container.id = 'aplayer';
-    container.style.cssText = 'position:fixed;bottom:15px;left:15px;z-index:999;width:calc(100% - 30px);';
+    container.style.cssText = 'position:fixed;bottom:30px;left:15px;z-index:999;width:calc(100% - 30px);';
     document.body.appendChild(container);
 
     window._aplayer = new APlayer({
