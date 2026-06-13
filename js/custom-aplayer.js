@@ -20,14 +20,10 @@
     setTimeout(initDrag, 500);
 
     function initDrag() {
-        var el = wrapper.querySelector('.aplayer');
-        if (!el) return;
-
         var style = document.createElement('style');
         style.textContent =
-            '#aplayer{transition:none!important}' +
-            '#aplayer .aplayer{cursor:grab;transition:none!important}' +
-            '#aplayer .aplayer input,#aplayer .aplayer button,#aplayer .aplayer a,#aplayer .aplayer [role="button"]{cursor:pointer}';
+            '#aplayer{cursor:grab;transition:none!important}' +
+            '#aplayer input,#aplayer button,#aplayer a,#aplayer [role="button"]{cursor:pointer}';
         document.head.appendChild(style);
 
         var dragging = false;
@@ -56,7 +52,7 @@
                 dragging = true;
                 moved = true;
                 wrapper.style.transition = 'none';
-                el.style.cursor = 'grabbing';
+                wrapper.style.cursor = 'grabbing';
                 wrapper.style.bottom = 'auto';
                 wrapper.style.right = 'auto';
             }
@@ -73,7 +69,7 @@
         function onUp() {
             document.removeEventListener('mousemove', onMove);
             document.removeEventListener('mouseup', onUp);
-            el.style.cursor = 'grab';
+            wrapper.style.cursor = 'grab';
             if (dragging) {
                 dragging = false;
                 setTimeout(function () { moved = false; }, 0);
