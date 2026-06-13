@@ -22,7 +22,7 @@
     function initDrag() {
         var style = document.createElement('style');
         style.textContent =
-            '#aplayer{cursor:grab;transition:none!important}' +
+            '#aplayer{cursor:grab;transition:none!important;overflow:visible!important}' +
             '#aplayer input,#aplayer button,#aplayer a,#aplayer [role="button"]{cursor:pointer}' +
             '#aplayer .aplayer-volume-bar-wrap{min-height:35px!important;height:35px!important}' +
             '#aplayer .aplayer-volume-bar{min-height:0!important}';
@@ -99,6 +99,14 @@
 
         var volWrap = wrapper.querySelector('.aplayer-volume-bar-wrap');
         if (volWrap) {
+            var volBar = volWrap.querySelector('.aplayer-volume-bar');
+            volWrap.addEventListener('click', function (e) {
+                var ap = window._aplayer;
+                if (!ap || !volBar) return;
+                var rect = volBar.getBoundingClientRect();
+                var vol = 1 - (e.clientY - rect.top) / rect.height;
+                ap.volume(Math.max(0, Math.min(1, vol)));
+            });
             volWrap.setAttribute('tabindex', '0');
             volWrap.addEventListener('keydown', function (e) {
                 var ap = window._aplayer;
