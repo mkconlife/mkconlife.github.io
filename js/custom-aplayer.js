@@ -23,7 +23,9 @@
         var style = document.createElement('style');
         style.textContent =
             '#aplayer{cursor:grab;transition:none!important}' +
-            '#aplayer input,#aplayer button,#aplayer a,#aplayer [role="button"]{cursor:pointer}';
+            '#aplayer input,#aplayer button,#aplayer a,#aplayer [role="button"]{cursor:pointer}' +
+            '#aplayer .aplayer-volume-bar-wrap{min-height:35px!important;height:35px!important}' +
+            '#aplayer .aplayer-volume-bar{min-height:0!important}';
         document.head.appendChild(style);
 
         var dragging = false;
@@ -94,5 +96,22 @@
             wrapper.style.bottom = 'auto';
             wrapper.style.right = 'auto';
         });
+
+        var volWrap = wrapper.querySelector('.aplayer-volume-bar-wrap');
+        if (volWrap) {
+            volWrap.setAttribute('tabindex', '0');
+            volWrap.addEventListener('keydown', function (e) {
+                var ap = window._aplayer;
+                if (!ap) return;
+                var vol = ap.volume || 0;
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    ap.volume(Math.min(1, vol + 0.05));
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    ap.volume(Math.max(0, vol - 0.05));
+                }
+            });
+        }
     }
 })();
