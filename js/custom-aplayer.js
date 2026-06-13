@@ -8,7 +8,7 @@
 
     window._aplayer = new APlayer({
         container: wrapper,
-        fixed: true,
+        fixed: false,
         audio: [{
             name: 'Welt Joyce',
             artist: 'HOYO-MIX',
