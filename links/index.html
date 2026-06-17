@@ -12,8 +12,8 @@
 <meta property="og:url" content="https://mkconlife.gitee.io/links/index.html">
 <meta property="og:site_name" content="Mkconlife&#39;s Blog">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-06-12T08:14:47.506Z">
-<meta property="article:modified_time" content="2026-06-12T08:14:47.506Z">
+<meta property="article:published_time" content="2026-06-14T12:38:08.673Z">
+<meta property="article:modified_time" content="2026-06-12T08:14:47.000Z">
 <meta property="article:author" content="Mkconlife">
 <meta name="twitter:card" content="summary">
 
@@ -76,8 +76,13 @@
 <link rel="stylesheet" href="/assets/css/APlayer.min.css">
 <link rel="stylesheet" href="/css/custom-aplayer.css?v=2.css">
 <link rel="stylesheet" href="/css/custom-shiki.css">
+<link rel="stylesheet" href="/css/custom-archive-cover.css">
+<link rel="stylesheet" href="/css/custom-mobile-nav.css">
+<link rel="stylesheet" href="/css/custom-post-info.css">
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 
-    
+    <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+
 
 
 
@@ -135,11 +140,11 @@
 			<!-- logo -->
 <a href="/" class="trm-logo-frame trm-anima-link">
     
-        <img alt="logo" src="/img/favicon.svg">
+        <img alt="logo" src="/img/favicon.svg" loading="lazy">
     
     
         <div class="trm-logo-text">
-            碎<span>梦</span>
+            愿谁记得谁<span>最好的年岁</span>
         </div>
     
 </a>
@@ -204,7 +209,7 @@
     <div class="trm-banner">
     
     <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.webp" loading="lazy">
     <!-- banner cover end -->
     
 
@@ -265,7 +270,7 @@
         <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
-        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.webp" loading="lazy">
     </div>
     <h5 class="trm-name trm-mb-15">
         Mkconlife
@@ -344,15 +349,8 @@
             
             <div class="trm-page-content col-lg-8">
                 <div id="trm-content" class="trm-content">
-                    <div class="row trm-scroll-animation" style="margin-bottom: var(--card-bottom-card);">
-    <div class="col-lg-12">
-        <blockquote>
-            友链要求：
-            <br>
-            暂不接受个人博客以外的友链申请，确保您的网站内容积极向上，文章至少30篇，原创70%以上，部署HTTPS。
-        </blockquote>
-    </div>
-</div>
+                    
+
 
 <div class="row trm-scroll-animation" >
     <div class="col-lg-12">
@@ -361,10 +359,8 @@
     <div class="col-lg-12">
         <div class="trm-card trm-scroll-animation trm-active-el">
             <ul class="trm-list">
-								<li>网站名称：hexo-theme-async</li>
-								<li>网站链接：https://hexo-theme-async.imalun.com</li>
-								<li>网站头像：https://mkconlife.gitee.io/img/avatar.jpg</li>
-								<li>网站简介：简单又好用的主题插件。</li>
+								<li>网站名称：Mkconlife's Blog</li>
+								<li>网站链接：https://mkconblog.pages.dev/</li>
             </ul>
         </div>
     </div>    
@@ -384,7 +380,7 @@
                 <div class="trm-link-box trm-scroll-animation trm-p-20">
                     <div class="trm-link-content">
                         <div class="trm-icon">
-                            <img draggable="false" onerror='this.onerror=null;this.src="/img/friend_404.gif"' alt="Dawn's blog" src="//dawneter.github.io/img/avatar.jpg">
+                            <img draggable="false" onerror='this.onerror=null;this.src="/img/friend_404.gif"' alt="Dawn's blog" src="//dawneter.github.io/img/avatar.jpg" loading="lazy">
                         </div>
                         <div class="trm-link-text">
                             <h6 class="trm-mb-10">Dawn's blog</h6>
@@ -400,6 +396,22 @@
 
 
     
+
+    <div class="trm-card trm-scroll-animation comment-container">
+    <div id="waline-wrap"></div>
+</div>
+<script data-swup-reload-script>
+(function() {
+    var el = document.getElementById('waline-wrap');
+    if (!el || typeof Waline === 'undefined') return;
+    Waline.init({
+        el: '#waline-wrap',
+        serverURL: 'https://waline-eight-kohl.vercel.app',
+        lang: 'zh-CN'
+    });
+})();
+</script>
+
 
 
 
@@ -517,6 +529,7 @@
 <script src="https://unpkg.com/iconify-icon@2.3.0/dist/iconify-icon.min.js" defer></script>
 <script src="/assets/js/APlayer.min.js" defer></script>
 <script src="/js/custom-aplayer.js?v=2.js" defer></script>
+<script src="/js/custom-toc-drag.js" defer></script>
 <script src="/js/shiki-swup.js" defer></script>
 
     

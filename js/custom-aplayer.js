@@ -3,16 +3,23 @@
 
     var wrapper = document.createElement('div');
     wrapper.id = 'aplayer';
-    wrapper.style.cssText = 'position:fixed;bottom:30px;left:15px;z-index:999;width:280px;';
+    wrapper.style.cssText = 'position:fixed;bottom:15px;left:15px;z-index:999;width:280px;';
     document.body.appendChild(wrapper);
+
+    var supportsOpus = (function () {
+        try { return new Audio().canPlayType('audio/ogg; codecs="opus"') !== ''; }
+        catch (e) { return false; }
+    })();
+    var ext = supportsOpus ? '.ogg' : '.mp3';
 
     window._aplayer = new APlayer({
         container: wrapper,
         fixed: false,
+        preload: 'metadata',
         audio: [{
             name: 'Welt Joyce',
             artist: 'HOYO-MIX',
-            url: '/music/welt-joyce.mp3',
+            url: '/music/welt-joyce' + ext,
             cover: '/music/picture/welt-joyce.png'
         }]
     });
@@ -32,11 +39,12 @@
         var moved = false;
         var sx, sy, ox, oy;
 
-        wrapper.addEventListener('mousedown', function (e) {
-            if (e.target.closest('input,select,textarea,a,button,[role="button"],.aplayer-bar-wrap,.aplayer-volume-bar-wrap,.aplayer-miniswitcher')) return;
+        function onStart(e) {
+            var t = e.touches ? e.touches[0] : e;
+            if (e.target.closest('input,select,textarea,a,button,[role="button"],.aplayer-bar-wrap,.aplayer-volume-bar-wrap,.aplayer-miniswitcher,.aplayer-button,.aplayer-icon,.aplayer-lrc')) return;
             e.preventDefault();
-            sx = e.clientX;
-            sy = e.clientY;
+            sx = t.clientX;
+            sy = t.clientY;
             var rect = wrapper.getBoundingClientRect();
             ox = rect.left;
             oy = rect.top;
@@ -44,11 +52,14 @@
             moved = false;
             document.addEventListener('mousemove', onMove);
             document.addEventListener('mouseup', onUp);
-        });
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('touchend', onUp);
+        }
 
         function onMove(e) {
-            var dx = e.clientX - sx;
-            var dy = e.clientY - sy;
+            var t = e.touches ? e.touches[0] : e;
+            var dx = t.clientX - sx;
+            var dy = t.clientY - sy;
             if (!dragging) {
                 if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
                 dragging = true;
@@ -58,6 +69,7 @@
                 wrapper.style.bottom = 'auto';
                 wrapper.style.right = 'auto';
             }
+            if (e.cancelable) e.preventDefault();
             var vw = window.innerWidth;
             var vh = window.innerHeight;
             var ww = wrapper.offsetWidth;
@@ -71,12 +83,17 @@
         function onUp() {
             document.removeEventListener('mousemove', onMove);
             document.removeEventListener('mouseup', onUp);
+            document.removeEventListener('touchmove', onMove);
+            document.removeEventListener('touchend', onUp);
             wrapper.style.cursor = 'grab';
             if (dragging) {
                 dragging = false;
                 setTimeout(function () { moved = false; }, 0);
             }
         }
+
+        wrapper.addEventListener('mousedown', onStart);
+        wrapper.addEventListener('touchstart', onStart, { passive: false });
 
         wrapper.addEventListener('click', function (e) {
             if (moved) {

@@ -18,8 +18,10 @@
 <meta property="og:image" content="https://mkconlife.gitee.io/img/404.jpg">
 <meta property="og:image" content="https://mkconlife.gitee.io/img/404.jpg">
 <meta property="article:published_time" content="2024-01-31T09:48:14.000Z">
-<meta property="article:modified_time" content="2026-06-13T00:34:59.839Z">
+<meta property="article:modified_time" content="2026-06-14T23:25:41.219Z">
 <meta property="article:author" content="Mkconlife">
+<meta property="article:tag" content="Archlinu">
+<meta property="article:tag" content="Tech">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://mkconlife.gitee.io/img/404.jpg">
 
@@ -63,7 +65,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"mkconlife.gitee.io","author":"Mkconlife","root":"/","typed_text":["a senior high school student"],"theme_version":"2.2.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！","showText":"欢迎回来","hideText":"快回来QAQ"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"prismjs","theme":false,"copy":false,"lang":false,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"05/01/2023 9:32:16","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-06-13 08:34:59"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-06-15 07:25:41"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.7" id="trm-switch-style">
@@ -82,8 +84,13 @@
 <link rel="stylesheet" href="/assets/css/APlayer.min.css">
 <link rel="stylesheet" href="/css/custom-aplayer.css?v=2.css">
 <link rel="stylesheet" href="/css/custom-shiki.css">
+<link rel="stylesheet" href="/css/custom-archive-cover.css">
+<link rel="stylesheet" href="/css/custom-mobile-nav.css">
+<link rel="stylesheet" href="/css/custom-post-info.css">
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 
-    
+    <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+
 
 
 
@@ -141,11 +148,11 @@
 			<!-- logo -->
 <a href="/" class="trm-logo-frame trm-anima-link">
     
-        <img alt="logo" src="/img/favicon.svg">
+        <img alt="logo" src="/img/favicon.svg" loading="lazy">
     
     
         <div class="trm-logo-text">
-            碎<span>梦</span>
+            愿谁记得谁<span>最好的年岁</span>
         </div>
     
 </a>
@@ -210,7 +217,7 @@
     <div class="trm-banner">
     
     <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.webp" loading="lazy">
     <!-- banner cover end -->
     
 
@@ -271,7 +278,7 @@
         <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
-        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.webp" loading="lazy">
     </div>
     <h5 class="trm-name trm-mb-15">
         Mkconlife
@@ -403,8 +410,8 @@
   </div><div class="right"><iconify-icon icon="fa6-solid:arrow-down-wide-short" class="toggle-wrap" title="Toggle Wrap"></iconify-icon><div class="copy-notice"></div><iconify-icon icon="fa6-solid:paste" class="copy-button"></iconify-icon><iconify-icon icon="fa6-solid:angle-down" class="expand"></iconify-icon></div></div> <pre class="shiki shiki-themes github-light github-dark"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">grub-install</span><span class="space"> </span><span style="color:#032F62;--shiki-dark:#9ECBFF">/dev/sda</span><span class="space"> </span><span style="color:#24292E;--shiki-dark:#E1E4E8">&#x26;&#x26;</span><span class="space"> </span><span style="color:#6F42C1;--shiki-dark:#B392F0">grub-mkconfig</span><span class="space"> </span><span style="color:#005CC5;--shiki-dark:#79B8FF">-o</span><span class="space"> </span><span style="color:#032F62;--shiki-dark:#9ECBFF">/boot/grub/grub.cfg（传统BIOS启动模式）</span></span></code></pre> </figure>
 
 <h2 id="2-X11无法启动"><a href="#2-X11无法启动" class="headerlink" title="2.X11无法启动"></a>2.X11无法启动</h2><p><strong>只针对使用Xorg图形管理器的朋友</strong><br>有些朋友可能和我一样，不喜欢让xorg自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面</p>
-<h3 id="2-a-问题描述"><a href="#2-a-问题描述" class="headerlink" title="2-a.问题描述"></a>2-a.问题描述</h3><p>在tty中普通用户&#x2F;超级用户运行<code>startx</code>无法启动，显示.Xauthority 不可写(<code>/home/xxx/.Xauthority not writeable</code>)，重启后再次运行该命令显示锁定.Xauthority文件超时(<code>timeout in locking authority file /home/xxx/.Xauthority</code>)，等待许久xorg服务终于启动，但是黑屏<br>(为了演示我重新在sudo下运行了startx，但是在重启后我startx之后连按三次<code>Cltr+c</code>居然成功的进入图形界面了QWQ,对应的图片是我第一次出事故的时候拍的)<br><img src="/img/startxnotwriteable.jpg" alt="Xauthority不可写"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/x11err.jpg" alt="锁定Xauthority超时"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h3 id="2-b-问题剖析"><a href="#2-b-问题剖析" class="headerlink" title="2-b.问题剖析"></a>2-b.问题剖析</h3><p>在root权限下误输入了startx,导致&#x2F;home&#x2F;xxx&#x2F;.Xauthority文件权限被更改，普通用户无权访问<br><img src="/img/sudostartx.png" alt="样例"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h3 id="2-a-问题描述"><a href="#2-a-问题描述" class="headerlink" title="2-a.问题描述"></a>2-a.问题描述</h3><p>在tty中普通用户&#x2F;超级用户运行<code>startx</code>无法启动，显示.Xauthority 不可写(<code>/home/xxx/.Xauthority not writeable</code>)，重启后再次运行该命令显示锁定.Xauthority文件超时(<code>timeout in locking authority file /home/xxx/.Xauthority</code>)，等待许久xorg服务终于启动，但是黑屏<br>(为了演示我重新在sudo下运行了startx，但是在重启后我startx之后连按三次<code>Cltr+c</code>居然成功的进入图形界面了QWQ,对应的图片是我第一次出事故的时候拍的)<br><img src="/img/startxnotwriteable.webp" alt="Xauthority不可写"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/x11err.webp" alt="锁定Xauthority超时"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h3 id="2-b-问题剖析"><a href="#2-b-问题剖析" class="headerlink" title="2-b.问题剖析"></a>2-b.问题剖析</h3><p>在root权限下误输入了startx,导致&#x2F;home&#x2F;xxx&#x2F;.Xauthority文件权限被更改，普通用户无权访问<br><img src="/img/sudostartx.webp" alt="样例"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <h3 id="2-c-解决方法"><a href="#2-c-解决方法" class="headerlink" title="2-c.解决方法"></a>2-c.解决方法</h3><p>在普通用户模式下运行</p>
 <figure class="shiki bash" data_title=""> <div class="shiki-tools"><div class="left">
     <div class="traffic-lights">
@@ -439,7 +446,7 @@
             
             <a class="trm-op-top trm-anima-link" href="/article/20734/">
                 <span class="trm-op-cover">
-                    <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+                    <img alt="cover" class="no-fancybox" src="/img/block.webp" loading="lazy">
                 </span>
                 <h6 class="trm-op-title">利用CVE-2022-38694漏洞解锁紫光soc的BL锁(实践)</h6>
             </a>
@@ -460,7 +467,7 @@
             
             <a class="trm-op-top trm-anima-link" href="/article/14433/">
                 <span class="trm-op-cover">
-                    <img alt="cover" class="no-fancybox" src="/img/banner.png">
+                    <img alt="cover" class="no-fancybox" src="/img/banner.webp" loading="lazy">
                 </span>
                 <h6 class="trm-op-title">关于我的主页背景图</h6>
             </a>
@@ -468,7 +475,7 @@
             <ul class="trm-card-data trm-label">
                 <li>24/01/21</li>
                 <li>10:46:04</li>
-                <li>未分类</li>
+                <li>杂谈</li>
             </ul>
         </div>
     </div>
@@ -477,6 +484,22 @@
 </div>
 
     
+
+    <div class="trm-card trm-scroll-animation comment-container">
+    <div id="waline-wrap"></div>
+</div>
+<script data-swup-reload-script>
+(function() {
+    var el = document.getElementById('waline-wrap');
+    if (!el || typeof Waline === 'undefined') return;
+    Waline.init({
+        el: '#waline-wrap',
+        serverURL: 'https://waline-eight-kohl.vercel.app',
+        lang: 'zh-CN'
+    });
+})();
+</script>
+
 
 
 
@@ -614,6 +637,7 @@
 <script src="https://unpkg.com/iconify-icon@2.3.0/dist/iconify-icon.min.js" defer></script>
 <script src="/assets/js/APlayer.min.js" defer></script>
 <script src="/js/custom-aplayer.js?v=2.js" defer></script>
+<script src="/js/custom-toc-drag.js" defer></script>
 <script src="/js/shiki-swup.js" defer></script>
 
     

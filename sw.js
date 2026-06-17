@@ -75,6 +75,12 @@ routing.registerRoute(
     })
 );
 
+//音频文件不经过 SW 缓存，避免丢失 Content-Length 和 Range 支持导致播放器显示 Infinity
+routing.registerRoute(
+    /.*\.(mp3|ogg|wav|flac|aac|m4a)$/,
+    new NetworkOnly()
+);
+
 //本站其他文件 
 routing.registerRoute(
     ({ url }) => {
