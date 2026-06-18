@@ -1,12 +1,1 @@
-figure.shiki {
-  overflow: hidden;
-}
-
-figure.shiki > pre.shiki {
-  overflow: auto;
-}
-
-.shiki-tools {
-  position: relative;
-  z-index: 1;
-}
+figure.shiki{overflow:hidden}figure.shiki>pre.shiki{overflow:auto}.shiki-tools{position:relative;z-index:1}
