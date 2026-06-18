@@ -13,10 +13,10 @@ https://mkconlife.gitee.io/tags/Tech/
 https://mkconlife.gitee.io/tags/Archlinux/
 https://mkconlife.gitee.io/tags/Archlinu/
 https://mkconlife.gitee.io/tags/%E6%9D%82%E8%B0%88/
+https://mkconlife.gitee.io/tags/Bootloader/
 https://mkconlife.gitee.io/tags/Program/
 https://mkconlife.gitee.io/tags/batch/
 https://mkconlife.gitee.io/tags/adb/
-https://mkconlife.gitee.io/tags/Bootloader/
 https://mkconlife.gitee.io/categories/Tech/
 https://mkconlife.gitee.io/categories/%E6%9D%82%E8%B0%88/
 https://mkconlife.gitee.io/categories/Tech/Archlinux/
