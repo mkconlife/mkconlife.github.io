@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
+    <url>/article/37988/</url>
+    <content><![CDATA[前引在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
+
+本程序都能干些什么？1.adb 相关工具1.1 相关运行库以及万能手机驱动的安装1.2 各种重启1.3 运行 shell1.4 恢复出厂1.5 安装 busybox1.6 scrcpy1.7 oem 解锁1.8 fastboot 刷机1.9 magisk 修补 boot 方式安装1.10 sideload 线刷
+2. 一些民间搜罗到的游戏2.1 井字棋2.2 勇士大闯关2.3 反恐金人2.4 寻宝2.5 梦幻西游2.6 米币冒险2.7 记忆游戏2.8 谜之拼图2.9 赌马场
+还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
+点击下面链接下载Toolbox-v1.8.1.8提取码: 1024
+网页端历史版本
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>Program</tag>
+        <tag>batch</tag>
+        <tag>adb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于我的主页背景图</title>
+    <url>/article/14433/</url>
+    <content><![CDATA[这个是我在崩三过剧情的时候看到的，当时对我的感触很深，就截图保存了，过剧情放的歌也很好听 (Welt Joyce),值得去听一下
+我把相关剧情的链接视频给放在这里，想要了解的可以自己去看看 QWQ
+To mklife:cover 可能不支持 jpg，寒假试试转成 png 再写到 cover 上
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Archlinux 台式机 传统 bios 启动模式 多系统安装 学习心得</title>
     <url>/article/fc27d993/</url>
-    <content><![CDATA[Archlinux 台式机 bios 启动 多系统安装 学习心得
-丑话说在前头，不愿意折腾的还是换个 linux 发行版吧，要是你喜欢 pacman 和 AUR，可以尝试去用Manjaro.
-本次使用的电脑已经很老了，但是 iso 是新的，不保证能在你的电脑上完全安装成功，本文只是提供一个思路罢了.
-废话少说 (虽然已经说不少了)，现在步入正题
-一、准备
-若有boot分区，请确保其分区的大小超过 1G，小于 1G 可以使用 diskgenius 进行分区大小调整 (食用方法找！度！娘！)
-你需要了解你的 cpu 是哪一家厂商生产的和你 windows 所在的分区号 (如果你电脑磁盘每个分区分的存储空间都不一样，只需记住你 windows 所在磁盘的大小即可，如果你电脑系统没有装在逻辑分区上，可以直接用磁盘管理或者DiskGenius从左往右数，记下你的 win 系统 (或者其他的) 在第几个上，若装在逻辑分区，那么将你数的那个数加一，还有一种比较暴力的方法，在你的 C 盘根目录下创建 一个方便找的文件，然后在启动archiso后输入
+    <content><![CDATA[Archlinux 台式机 bios 启动 多系统安装 学习心得丑话说在前头，不愿意折腾的还是换个 linux 发行版吧，要是你喜欢 pacman 和 AUR，可以尝试去用Manjaro.本次使用的电脑已经很老了，但是 iso 是新的，不保证能在你的电脑上完全安装成功，本文只是提供一个思路罢了.废话少说 (虽然已经说不少了)，现在步入正题
+一、准备若有boot分区，请确保其分区的大小超过 1G，小于 1G 可以使用 diskgenius 进行分区大小调整 (食用方法找！度！娘！)你需要了解你的 cpu 是哪一家厂商生产的和你 windows 所在的分区号 (如果你电脑磁盘每个分区分的存储空间都不一样，只需记住你 windows 所在磁盘的大小即可，如果你电脑系统没有装在逻辑分区上，可以直接用磁盘管理或者DiskGenius从左往右数，记下你的 win 系统 (或者其他的) 在第几个上，若装在逻辑分区，那么将你数的那个数加一，还有一种比较暴力的方法，在你的 C 盘根目录下创建 一个方便找的文件，然后在启动archiso后输入
  
     
       
@@ -20,18 +49,10 @@
   
     
    mount /dev/sda1 /mntls /mntumount /mntmount /dev/sda2 /mnt 
-...........
-直到找到那个文件为止，记下你的分区号(/dev/sdax)
-准备一个可启动的 U 盘 (或者一个已经被 root 了的手机和一根数据线)(U 盘建议至少8G，虽然 iso 镜像没有这么大，但是可以避免遇到那些劣质 U 盘 (?))，iso 镜像下载可以选择清华源和 163 源，没有 U 盘的可以把镜像传到已经 root 好了的手机上，然后下载DriverDroid，食用方式去找度娘 QwQ
-注意:致ventoy用户: 如果你使用的是 ventoy 启动方式，请把 iso 镜像放到一个文件都没有的 u 盘分区，若找不到这个分区，请用电脑自带的磁盘管理或者 DiskGenuis 赋予其盘符，到 ventoy 启动界面后选择你下载好的镜像回车，然后请务必选择 “以 grub2 模式启动”，否则将会出现致命错误 (你不一定抽到什么错误: D，有一个好像是关于解压文件的错误 [他的英文直译过来后是解压缩文件被腐蚀]) 虽然他的 grub2 启动项标题都带着 uefi，但是不用担心，它不会影响到我们的安装过程，选择第一个启动即可 (启动速度可能很慢)
-
-二、安装
-此时应进入到archiso
-1. 联网
-家里只有台式机，所以不提供无线网络联网方式的安装教程
-台式机的联网很简单，输入dhcpcd回车即可
-2. 分区
-我从接触 archlinux 起分区就一直用的是cfdisk
+………..直到找到那个文件为止，记下你的分区号(/dev/sdax)准备一个可启动的 U 盘 (或者一个已经被 root 了的手机和一根数据线)(U 盘建议至少8G，虽然 iso 镜像没有这么大，但是可以避免遇到那些劣质 U 盘 (?))，iso 镜像下载可以选择清华源和 163 源，没有 U 盘的可以把镜像传到已经 root 好了的手机上，然后下载DriverDroid，食用方式去找度娘 QwQ注意:致ventoy用户: 如果你使用的是 ventoy 启动方式，请把 iso 镜像放到一个文件都没有的 u 盘分区，若找不到这个分区，请用电脑自带的磁盘管理或者 DiskGenuis 赋予其盘符，到 ventoy 启动界面后选择你下载好的镜像回车，然后请务必选择 “以 grub2 模式启动”，否则将会出现致命错误 (你不一定抽到什么错误: D，有一个好像是关于解压文件的错误 [他的英文直译过来后是解压缩文件被腐蚀]) 虽然他的 grub2 启动项标题都带着 uefi，但是不用担心，它不会影响到我们的安装过程，选择第一个启动即可 (启动速度可能很慢)
+二、安装此时应进入到archiso
+1. 联网家里只有台式机，所以不提供无线网络联网方式的安装教程台式机的联网很简单，输入dhcpcd回车即可
+2. 分区我从接触 archlinux 起分区就一直用的是cfdisk
  
     
       
@@ -42,8 +63,7 @@
   
     
    cfdisk 
-若给剩余空间分区，用方向键上下选中free space，然后用方向键左右选中new，回车，输入分区大小 (要是创建逻辑分区请直接回车)，回车，尽量选择primary (主分区)，如果超过四个主分区可以选择extend (逻辑分区)(若是选择 extend 请在创建好后的分区下面的freespace重新新建分区)，然后方向键左右选中Write,回车，输入 yes 回车然后记下分区号，建议再创建一个swap (虚拟内存，就是拿你的存储空间当做内存用)，4G 左右即可 (因机器而异)，然后方向键左右选中Write，回车然后记下分区号, 然后方向键左右移动到Quit回车
-运行
+若给剩余空间分区，用方向键上下选中free space，然后用方向键左右选中new，回车，输入分区大小 (要是创建逻辑分区请直接回车)，回车，尽量选择primary (主分区)，如果超过四个主分区可以选择extend (逻辑分区)(若是选择 extend 请在创建好后的分区下面的freespace重新新建分区)，然后方向键左右选中Write,回车，输入 yes 回车然后记下分区号，建议再创建一个swap (虚拟内存，就是拿你的存储空间当做内存用)，4G 左右即可 (因机器而异)，然后方向键左右选中Write，回车然后记下分区号, 然后方向键左右移动到Quit回车运行
  
     
       
@@ -65,8 +85,7 @@
   
     
    mkswap swap的分区号swapon swap的分区号 
-3. 安装
-3.1 挂载分区
+3. 安装3.1 挂载分区
  
     
       
@@ -143,8 +162,7 @@
   
     
    passwd 
-注意，在 linux 终端输入密码是不可见的，若存在数字密码请确保你的数字锁定已经打开
-3.5-2 配置时区
+注意，在 linux 终端输入密码是不可见的，若存在数字密码请确保你的数字锁定已经打开3.5-2 配置时区
  
     
       
@@ -156,7 +174,6 @@
     
    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtimecat /etc/localtime 
 出现乱码则成功
-
  
     
       
@@ -178,10 +195,7 @@
   
     
    vim /etc/locale.gen 
-用方向键下找en_US UTF-8 UTF-8和zh_CN UTF-8 UTF-8
-输入 i
-删去前面的#
-按 esc，输入:wq!
+用方向键下找en_US UTF-8 UTF-8和zh_CN UTF-8 UTF-8输入 i删去前面的#按 esc，输入:wq!
  
     
       
@@ -203,8 +217,7 @@
   
     
    echo 起个你的主机名 &gt; /etc/hostnamevim /etc/hosts 
-输入 i
-输入
+输入 i输入
  
     
       
@@ -215,9 +228,7 @@
   
     
    127.0.0.1(这里按Tab键)localhost::1(这里按Tab键)(这里按Tab键)localhost127.0.1.1(这里按Tab键)主机名.localdomain(这里按Tab键)主机名 
-
-按 esc 输入: wq! 以保存并退出
-3.5-5 安装微码 (不安装连引导页面都进不去，别问我怎么知道的: D)
+按 esc 输入: wq! 以保存并退出3.5-5 安装微码 (不安装连引导页面都进不去，别问我怎么知道的: D)
  
     
       
@@ -239,8 +250,7 @@
   
     
    grub-install ––target=i386-pc /dev/sda 
-如果你的电脑上还存在Windows
-那么键入
+如果你的电脑上还存在Windows那么键入
  
     
       
@@ -251,8 +261,7 @@
   
     
    vim /etc/default/grub 
-取消下面这一行的注释，如果没有相应注释的话就在文件末尾添加上：
-GRUB_DISABLE_OS_PROBER=false
+取消下面这一行的注释，如果没有相应注释的话就在文件末尾添加上：GRUB_DISABLE_OS_PROBER=false
 配置 grub 文件
  
     
@@ -264,10 +273,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    grub-mkconfig -o /boot/grub/grub.cfgexitreboot 
-3.5-e 网络不可用的解决办法
-注意，此时的用户名是 root
-如果登上 archlinux 后发现无法联网
-输入
+3.5-e 网络不可用的解决办法注意，此时的用户名是 root如果登上 archlinux 后发现无法联网输入
  
     
       
@@ -278,8 +284,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    echo interface = eth0 &gt; /etc/rc.confdhcpcdsystemctl enable dhcpcd 
-即可解决
-有时系统滚完后可能会再次无法联网，此时在执行完第一行命令后执行
+即可解决有时系统滚完后可能会再次无法联网，此时在执行完第一行命令后执行
  
     
       
@@ -290,8 +295,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    touch /etc/rc.conf  
-3.5-7 创建用户
-在 linux 中使用 root 用户会带来诸多不便，所以我们要创建一个普通用户
+3.5-7 创建用户在 linux 中使用 root 用户会带来诸多不便，所以我们要创建一个普通用户
  
     
       
@@ -312,10 +316,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    vim /etc/sudoers 
-输入 i
-取消%wheel ALL=(ALL:ALL) ALL的注释
-然后输入 i 键入 你的用户名 ALL=(ALL) ALL
-按 esc 输入:wq!以保存并退出
+输入 i取消%wheel ALL=(ALL:ALL) ALL的注释然后输入 i 键入 你的用户名 ALL=(ALL) ALL按 esc 输入:wq!以保存并退出
  
     
       
@@ -326,8 +327,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    passwd 你的用户名 
-然后输入你想要设置的密码
-3.6 重启
+然后输入你想要设置的密码3.6 重启
  
     
       
@@ -338,8 +338,7 @@ GRUB_DISABLE_OS_PROBER=false
   
     
    exitreboot 
-至此，一个基本的 Archlinux 就安装完了: D
-感谢你看到这里
+至此，一个基本的 Archlinux 就安装完了: D感谢你看到这里
 参考资料
 
 ArchlinuxWiki-GRUB
@@ -358,144 +357,9 @@ Archlinux 无法上网
       </tags>
   </entry>
   <entry>
-    <title>Archlinux 使用过程遇到的一些坑</title>
-    <url>/article/23109/</url>
-    <content><![CDATA[Archlinux 使用过程遇到的一些问题
-这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助
-本文章会持续更新
-1. 滚挂
-我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。
-1-a. 问题描述：
-这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因 (我暂时还没有遇到过: D)
-1-b 问题剖析
-去网上找了资料，问题是长时间不更新系统并且更新系统的时候使用的是pacman -Syyu
-1-c. 解决方法:
-1-c-1.boot 分区无法识别
-做一个 Archlinux 的 liveCD，进入 archiso 之后
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   mount /dev/系统硬盘号 /mntarch-chroot /mnt 
-进入系统,pacman -Sy ntfs-3g 然后exit,reboot 完事！
-1-c-2. 内核出错
-后续整理
-1-b-3. 避免问题复发
-①每次进行系统更新时使用pacman -Syu而不是 - Syyu
-②如果更新文件很多，一时半会找不到内核是否需要更新，那么在更新完之后可以执行
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   grub-install /dev/sda &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg（传统BIOS启动模式） 
-2.X11 无法启动
-只针对使用 Xorg 图形管理器的朋友
-有些朋友可能和我一样，不喜欢让 xorg 自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面
-2-a. 问题描述
-在 tty 中普通用户 / 超级用户运行startx无法启动，显示.Xauthority 不可写 (/home/xxx/.Xauthority not writeable)，重启后再次运行该命令显示锁定.Xauthority 文件超时 (timeout in locking authority file /home/xxx/.Xauthority)，等待许久 xorg 服务终于启动，但是黑屏
-(为了演示我重新在 sudo 下运行了 startx，但是在重启后我 startx 之后连按三次Cltr+c居然成功的进入图形界面了 QWQ, 对应的图片是我第一次出事故的时候拍的)
-
-
-2-b. 问题剖析
-在 root 权限下误输入了 startx, 导致 /home/xxx/.Xauthority 文件权限被更改，普通用户无权访问
-
-2-c. 解决方法
-在普通用户模式下运行
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   sudo chown 你的用户名 ~/.Xauthoritychmod 777 ~/.Xauthority 
-之后运行startx，就可以看到你的 X11 界面了
-]]></content>
-      <categories>
-        <category>Tech</category>
-        <category>Archlinux</category>
-      </categories>
-      <tags>
-        <tag>Tech</tag>
-        <tag>Archlinu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
-    <url>/article/37988/</url>
-    <content><![CDATA[前引
-在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取
-注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
-
-
-本程序都能干些什么？
-1.adb 相关工具
-1.1 相关运行库以及万能手机驱动的安装
-1.2 各种重启
-1.3 运行 shell
-1.4 恢复出厂
-1.5 安装 busybox
-1.6 scrcpy
-1.7 oem 解锁
-1.8 fastboot 刷机
-1.9 magisk 修补 boot 方式安装
-1.10 sideload 线刷
-2. 一些民间搜罗到的游戏
-2.1 井字棋
-2.2 勇士大闯关
-2.3 反恐金人
-2.4 寻宝
-2.5 梦幻西游
-2.6 米币冒险
-2.7 记忆游戏
-2.8 谜之拼图
-2.9 赌马场
-还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
-点击下面链接下载
-Toolbox-v1.8.1.8
-提取码: 1024
-网页端历史版本
-]]></content>
-      <categories>
-        <category>Tech</category>
-      </categories>
-      <tags>
-        <tag>Program</tag>
-        <tag>batch</tag>
-        <tag>adb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于我的主页背景图</title>
-    <url>/article/14433/</url>
-    <content><![CDATA[这个是我在崩三过剧情的时候看到的，当时对我的感触很深，就截图保存了，过剧情放的歌也很好听 (Welt Joyce),值得去听一下
-我把相关剧情的链接视频给放在这里，想要了解的可以自己去看看 QWQ
-To mklife:cover 可能不支持 jpg，寒假试试转成 png 再写到 cover 上
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>利用 CVE-2022-38694 漏洞解锁紫光 soc 的 BL 锁 (实践)</title>
     <url>/article/20734/</url>
-    <content><![CDATA[前言
-最近因为家里给小孩购置了一台 T606 的学习机，好巧不巧我去年十二月刷到并收藏过利用紫光 Soc 的 CVE 漏洞解锁 bootloader 的视频，当时拿到机器立刻想到这个视频了，于是乎便有了这篇文章
+    <content><![CDATA[前言最近因为家里给小孩购置了一台 T606 的学习机，好巧不巧我去年十二月刷到并收藏过利用紫光 Soc 的 CVE 漏洞解锁 bootloader 的视频，当时拿到机器立刻想到这个视频了，于是乎便有了这篇文章
 
         
             
@@ -523,11 +387,8 @@ To mklife:cover 可能不支持 jpg，寒假试试转成 png 再写到 cover 上
             
         
     
-这篇文章主要是自个跟着这个视频教程走的，只是用自己的方式复述了一遍过程罢了，然后补充了一下我自己在操作过程中认为需要完善的地方
-下载工具包,里面有 android platform sdk, 驱动程序, boot 签名工具
-To linux 用户
-这篇文章主要是在 Windows 下进行的，如果你不愿意折腾驱动或者安装驱动失败了的可以试试使用 linux
-在你的终端中输入
+这篇文章主要是自个跟着这个视频教程走的，只是用自己的方式复述了一遍过程罢了，然后补充了一下我自己在操作过程中认为需要完善的地方下载工具包,里面有 android platform sdk, 驱动程序, boot 签名工具
+To linux 用户这篇文章主要是在 Windows 下进行的，如果你不愿意折腾驱动或者安装驱动失败了的可以试试使用 linux在你的终端中输入
  
     
       
@@ -538,11 +399,8 @@ To linux 用户
   
     
    sudo apt-get install build-essential libusb-1.0-0-dev gitgit clone --recursive https://github.com/TomKing062/CVE-2022-38694_unlock_bootloader.gitcd CVE-2022-38694_unlock_bootloadergcc chsize.c -o chsizegcc gen_spl-unlock.c -o gen_spl-unlockgcc gen_spl-unlock-legacy.c -o gen_spl-unlock-legacycd spreadtrum_flashmake 
-把编译好的 chsize、gen_spl-unlock (或 gen_spl-unlock-legacy) 和 spd_dump 复制到解锁资料文件夹 (1-3)，进下载模式，执行命令
-adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-1-4 会要求执行unlock_autopatch.bat，我们需要把这个文件扔给 AI (我用的 Kimi) 让他转换成 shell 文件
-1.Preparation
-1-1. 检查你的 Soc 是否支持
-截止到 2026.06.17, 这个项目TomKing062/CVE-2022-38694_unlock_bootloader支持的 Soc 有 sc9863a，ud710，ums312，ums512，ums9230，ums9620(ZTE:nubia series/60series不被支持)，ums9621(魅族M20不被支持)
+把编译好的 chsize、gen_spl-unlock (或 gen_spl-unlock-legacy) 和 spd_dump 复制到解锁资料文件夹 (1-3)，进下载模式，执行命令adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-1-4 会要求执行unlock_autopatch.bat，我们需要把这个文件扔给 AI (我用的 Kimi) 让他转换成 shell 文件
+1.Preparation1-1. 检查你的 Soc 是否支持截止到 2026.06.17, 这个项目TomKing062/CVE-2022-38694_unlock_bootloader支持的 Soc 有 sc9863a，ud710，ums312，ums512，ums9230，ums9620(ZTE:nubia series/60series不被支持)，ums9621(魅族M20不被支持) 
 下载好我的工具包，连接手机，打开 USB 调试，在资源管理器中的路径处键入cmd回车，输入
  
     
@@ -554,13 +412,8 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    adb shell cat /proc/device-tree/compatible 2&gt;/dev/null | tr '\0' '\n' 
-
-如果你实在不放心, 可以下个白眼康康 (得到 Soc 的品牌名后自行去网上搜内部型号和上面的支持列表对应)
-如果你的设备是山寨机，墙裂建议你用白眼看看
-如果你的机器 Soc 在上面的列表中，祝贺你，带着胆量接着和我一起往下走吧；如果不在上面的列表也没关系，起码你的设备 一般 不会变砖了 QWQ
-1-2. 检查机器硬盘类型 (EMMC / UFS)
-你可以查看完整的支持列表,如果你的型号的机器在列出的机型中，那么这一步完全不用走了，直接到 1-3
-如果你是山寨机或者未在列出的机型（之后用unlisted代替）中，在之前打开的 cmd 窗口中继续运行
+如果你实在不放心, 可以下个白眼康康 (得到 Soc 的品牌名后自行去网上搜内部型号和上面的支持列表对应)如果你的设备是山寨机，墙裂建议你用白眼看看如果你的机器 Soc 在上面的列表中，祝贺你，带着胆量接着和我一起往下走吧；如果不在上面的列表也没关系，起码你的设备 一般 不会变砖了 QWQ
+1-2. 检查机器硬盘类型 (EMMC / UFS)你可以查看完整的支持列表,如果你的型号的机器在列出的机型中，那么这一步完全不用走了，直接到 1-3如果你是山寨机或者未在列出的机型（之后用unlisted代替）中，在之前打开的 cmd 窗口中继续运行
  
     
       
@@ -572,19 +425,10 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
     
    adb shell ls /sys/class/block 
 如果出现sdx之类字样，那么就是 UFS 类型，如果是mmcblk0p1之类字样，就是 EMMC 类型，我的是 UFS
-
-1-3. 下载解锁资料
-点击这里进入下载页，找到你的机器所对应的文件, 命名方式多以soc内部代号_机型.zip，如果你的机器unlisted，选择soc内部代号_universal_硬盘类型.zip，解压它
-
-注意
-请再次检查你选择的资源是否匹配
-
-1-4. 安装驱动
-打开工具包中以SPD_Driver_R4.20.4201命名的文件夹，找到你的系统 (win11 用 win10 驱动) 所对应的文件夹并进入，执行DriverSetup.exe，之后重启电脑
-2. 解锁 BootLoader
-2-1. 备份所有分区
-2-1-1. 进入 BROM
-将手机关机，连接电脑，打开解锁资料包，在资源管理器中的路径处键入cmd回车，输入
+1-3. 下载解锁资料点击这里进入下载页，找到你的机器所对应的文件, 命名方式多以soc内部代号_机型.zip，如果你的机器unlisted，选择soc内部代号_universal_硬盘类型.zip，解压它
+::: warning 注意请再次检查你选择的资源是否匹配:::
+1-4. 安装驱动打开工具包中以SPD_Driver_R4.20.4201命名的文件夹，找到你的系统 (win11 用 win10 驱动) 所对应的文件夹并进入，执行DriverSetup.exe，之后重启电脑
+2. 解锁 BootLoader2-1. 备份所有分区2-1-1. 进入 BROM将手机关机，连接电脑，打开解锁资料包，在资源管理器中的路径处键入cmd回车，输入
  
     
       
@@ -596,9 +440,7 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
     
    spd_dump 
 之后长按手机的开机键和音量 + 键，出现BROM就算成功
-
-2-1-2. 选择镜像备份位置
-在你的电脑上找一个文件夹，记下他的路径，请确保该文件夹所在磁盘有大约 10GB 的存储空间 (我的是 6G)，在之前的BROM命令行中，执行 (将下面的path改为你的文件夹路径)
+2-1-2. 选择镜像备份位置在你的电脑上找一个文件夹，记下他的路径，请确保该文件夹所在磁盘有大约 10GB 的存储空间 (我的是 6G)，在之前的BROM命令行中，执行 (将下面的path改为你的文件夹路径)
  
     
       
@@ -609,11 +451,8 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    path /path 
-2-1-3. 进入 fdl2
-截止到 2026.06.18，以下是支持的 Soc 所对应的FDL 1和FDL 2地址
 
-记下你机型的地址，我将会用fdl1_addr和fdl2_addr来代替他们
-在之前的BROM窗口，执行
+2-1-3. 进入 fdl2截止到 2026.06.18，以下是支持的 Soc 所对应的FDL 1和FDL 2地址记下你机型的地址，我将会用fdl1_addr和fdl2_addr来代替他们在之前的BROM窗口，执行
  
     
       
@@ -624,11 +463,8 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    fdl fdl1-dl.bin fdl1_addrfdl fdl2-dl.bin fdl2_addrexec  
-
-不出意外应该是进入fdl2下载模式了
-如果出现什么timeout reached，程序退出，不要担心，你的手机没变砖: P ，请检查你输入的地址是否正确，拔掉充电线，重连手机，回到 2-1-1 (此时无需再开机)
-2-1-4. 开始备份
-之后执行
+不出意外应该是进入fdl2下载模式了如果出现什么timeout reached，程序退出，不要担心，你的手机没变砖: P ，请检查你输入的地址是否正确，拔掉充电线，重连手机，回到 2-1-1 (此时无需再开机)
+2-1-4. 开始备份之后执行
  
     
       
@@ -640,16 +476,10 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
     
    r all 
 全量备份放心 (不含 userdata)
-
-开始备份
-有些人可能看到自己高达 100 多 G 的 userdata 傻了眼，没关系，虽然r all但是 userdata 还是不会备份的啦，至于某些 AI 说会备份的当乐子听就行了
-有一点需要注意，如果备份途中手机断连或程序卡退，你需要删除镜像备份位置中的所有文件 (我没研究过，或许删某个文件就好了？)，否则再次进入 BROM，设置 path 可能会提示device removed... 并退出
-2-2. 开始解锁
-备份完成后检查一下uboot_a,uboot_b,splloader是否存在
-之后关掉工具，拔掉数据线，重连，执行解锁资料中的unlock_autopatch.bat，长按手机的开机键和音量 + 键
+开始备份有些人可能看到自己高达 100 多 G 的 userdata 傻了眼，没关系，虽然r all但是 userdata 还是不会备份的啦，至于某些 AI 说会备份的当乐子听就行了有一点需要注意，如果备份途中手机断连或程序卡退，你需要删除镜像备份位置中的所有文件 (我没研究过，或许删某个文件就好了？)，否则再次进入 BROM，设置 path 可能会提示device removed... 并退出
+2-2. 开始解锁备份完成后检查一下uboot_a,uboot_b,splloader是否存在之后关掉工具，拔掉数据线，重连，执行解锁资料中的unlock_autopatch.bat，长按手机的开机键和音量 + 键
 如果提示usb_send failed(0/1),重连手机，长按手机的开机键和音量 + 键
-若程序提示请按任意键继续，请你打开设备资源管理器 (右键此电脑，管理，设备资源管理器，COM 端口)，有设备之后再继续
-在 linux 下，可以执行来实时监控端口连接情况
+若程序提示请按任意键继续，请你打开设备资源管理器 (右键此电脑，管理，设备资源管理器，COM 端口)，有设备之后再继续在 linux 下，可以执行来实时监控端口连接情况
  
     
       
@@ -660,10 +490,9 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    udevadm monitor --udev --subsystem-match=usb 
-有些设备可能会在刷写分区时要用户确定，输入yes回车即可
-出现下图即刷入完毕，此时你的平板理应开机
 
-如果没有开机，很抱歉，你的设备变成了黑砖，重新回到2-1-1,执行完2-1-3后，执行
+有些设备可能会在刷写分区时要用户确定，输入yes回车即可
+出现下图即刷入完毕，此时你的平板理应开机如果没有开机，很抱歉，你的设备变成了黑砖，重新回到2-1-1,执行完2-1-3后，执行
  
     
       
@@ -674,10 +503,9 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    w uoot_a 你的对应文件w uoot_b 你的对应文件w splloader 你的对应文件w splloader_bak 你的对应文件(splloader.img即可) 
-如果直接进入了fastboot可交互模式，那么很好，直接Factory Reset即可
-我的设备就没这么幸运了，需要手动 Fatory reset
-3. 手动格式化 userdata
-回到2-1-1，进入 fdl2, 执行
+
+如果直接进入了fastboot可交互模式，那么很好，直接Factory Reset即可我的设备就没这么幸运了，需要手动 Fatory reset
+3. 手动格式化 userdata回到2-1-1，进入 fdl2, 执行
  
     
       
@@ -699,8 +527,7 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    reboot-fastboot 
-之后选择reboot to bootloader
-在bootloader模式下，打开我的资源包，在资源管理器中的路径处键入cmd回车，执行
+之后选择reboot to bootloader在bootloader模式下，打开我的资源包，在资源管理器中的路径处键入cmd回车，执行
  
     
       
@@ -712,9 +539,7 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
     
    fastboot erase userdatafastboot reboot 
 这下应该就能启动成功了
-番外 4. 刷 Magisk (Android&gt;=13)
-把你备份的 boot_a 和 boot_b 的 bin 文件直接传给手机，在手机上下载 magisk 并修补，把 patch 好的文件传给电脑
-手机打开 usb 调试，在 3. 处打开的 cmd 窗口中执行
+番外 4. 刷 Magisk (Android&gt;=13)把你备份的 boot_a 和 boot_b 的 bin 文件直接传给手机，在手机上下载 magisk 并修补，把 patch 好的文件传给电脑手机打开 usb 调试，在 3. 处打开的 cmd 窗口中执行
  
     
       
@@ -725,11 +550,7 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    adb reboot bootloaderfastboot flash boot_a 打包好的boot镜像fastboot flash boot_b 打包好的boot镜像fastboot reboot 
-番外 5. 刷 Magisk (Android &lt; 13)
-把你备份的 boot_a 和 boot_b 的 bin 文件直接传给手机，在手机上下载 magisk 并修补，把 patch 好的文件传给电脑
-在你的镜像目录中找到 vbmeta，复制到 patch 好的 boot 目录下，然后将它们一起放到我的资源包中 spd_vbmeta 工具的 in 目录，重命名为 boot.img 和 vbmeta-sign.img
-打开 SPD Sign TOOL, 选择 android 版本，点击extract vbmeta，之后选中 boot 分区，点击Sign Checked Images，之后在 out 目录中应该能看到签名后的文件，将它们刷入即可
-手机打开 usb 调试，在 3. 处打开的 cmd 窗口中执行
+番外 5. 刷 Magisk (Android &lt; 13)把你备份的 boot_a 和 boot_b 的 bin 文件直接传给手机，在手机上下载 magisk 并修补，把 patch 好的文件传给电脑在你的镜像目录中找到 vbmeta，复制到 patch 好的 boot 目录下，然后将它们一起放到我的资源包中 spd_vbmeta 工具的 in 目录，重命名为 boot.img 和 vbmeta-sign.img打开 SPD Sign TOOL, 选择 android 版本，点击extract vbmeta，之后选中 boot 分区，点击Sign Checked Images，之后在 out 目录中应该能看到签名后的文件，将它们刷入即可手机打开 usb 调试，在 3. 处打开的 cmd 窗口中执行
  
     
       
@@ -740,17 +561,72 @@ adb 工具可以自己 ai 一下自己发行版的下载命令来安装，在 2-
   
     
    adb reboot bootloaderfastboot flash boot_a 处理好的boot镜像fastboot flash boot_b 处理好的boot镜像fastboot flash vbmeta 处理好的vbmeta镜像fastboot reboot 
-参考资料
-1.我收藏的视频链接
-2.设备 fdl1 / fdl2 对照表
-3.解锁资料下载地址
-4.wiki
-5.设备支持列表
+
+参考资料1.我收藏的视频链接2.设备 fdl1 / fdl2 对照表3.解锁资料下载地址4.wiki5.设备支持列表
 工具包
 ]]></content>
       <tags>
         <tag>Tech</tag>
         <tag>Bootloader</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Archlinux 使用过程遇到的一些坑</title>
+    <url>/article/23109/</url>
+    <content><![CDATA[Archlinux 使用过程遇到的一些问题这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助本文章会持续更新
+1. 滚挂我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。
+1-a. 问题描述：这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因 (我暂时还没有遇到过: D)
+1-b 问题剖析去网上找了资料，问题是长时间不更新系统并且更新系统的时候使用的是pacman -Syyu 
+1-c. 解决方法:1-c-1.boot 分区无法识别做一个 Archlinux 的 liveCD，进入 archiso 之后
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   mount /dev/系统硬盘号 /mntarch-chroot /mnt 
+
+进入系统,pacman -Sy ntfs-3g 然后exit,reboot 完事！
+1-c-2. 内核出错后续整理
+1-b-3. 避免问题复发①每次进行系统更新时使用pacman -Syu而不是 - Syyu②如果更新文件很多，一时半会找不到内核是否需要更新，那么在更新完之后可以执行
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   grub-install /dev/sda &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg（传统BIOS启动模式） 
+
+2.X11 无法启动只针对使用 Xorg 图形管理器的朋友有些朋友可能和我一样，不喜欢让 xorg 自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面
+2-a. 问题描述在 tty 中普通用户 / 超级用户运行startx无法启动，显示.Xauthority 不可写 (/home/xxx/.Xauthority not writeable)，重启后再次运行该命令显示锁定.Xauthority 文件超时 (timeout in locking authority file /home/xxx/.Xauthority)，等待许久 xorg 服务终于启动，但是黑屏(为了演示我重新在 sudo 下运行了 startx，但是在重启后我 startx 之后连按三次Cltr+c居然成功的进入图形界面了 QWQ, 对应的图片是我第一次出事故的时候拍的)
+2-b. 问题剖析在 root 权限下误输入了 startx, 导致 /home/xxx/.Xauthority 文件权限被更改，普通用户无权访问
+2-c. 解决方法在普通用户模式下运行
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   sudo chown 你的用户名 ~/.Xauthoritychmod 777 ~/.Xauthority 
+
+之后运行startx，就可以看到你的 X11 界面了
+]]></content>
+      <categories>
+        <category>Tech</category>
+        <category>Archlinux</category>
+      </categories>
+      <tags>
+        <tag>Tech</tag>
+        <tag>Archlinu</tag>
       </tags>
   </entry>
 </search>
