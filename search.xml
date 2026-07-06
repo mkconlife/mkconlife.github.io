@@ -1,81 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Archlinux 使用过程遇到的一些坑</title>
-    <url>/article/23109/</url>
-    <content><![CDATA[Archlinux 使用过程遇到的一些问题
-这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助
-本文章会持续更新
-1. 滚挂
-我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。
-1-a. 问题描述：
-这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因 (我暂时还没有遇到过: D)
-1-b 问题剖析
-去网上找了资料，问题是长时间不更新系统并且更新系统的时候使用的是pacman -Syyu
-1-c. 解决方法:
-1-c-1.boot 分区无法识别
-做一个 Archlinux 的 liveCD，进入 archiso 之后
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   mount /dev/系统硬盘号 /mntarch-chroot /mnt 
-进入系统,pacman -Sy ntfs-3g 然后exit,reboot 完事！
-1-c-2. 内核出错
-后续整理
-1-b-3. 避免问题复发
-①每次进行系统更新时使用pacman -Syu而不是 - Syyu
-②如果更新文件很多，一时半会找不到内核是否需要更新，那么在更新完之后可以执行
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   grub-install /dev/sda &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg（传统BIOS启动模式） 
-2.X11 无法启动
-只针对使用 Xorg 图形管理器的朋友
-有些朋友可能和我一样，不喜欢让 xorg 自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面
-2-a. 问题描述
-在 tty 中普通用户 / 超级用户运行startx无法启动，显示.Xauthority 不可写 (/home/xxx/.Xauthority not writeable)，重启后再次运行该命令显示锁定.Xauthority 文件超时 (timeout in locking authority file /home/xxx/.Xauthority)，等待许久 xorg 服务终于启动，但是黑屏
-(为了演示我重新在 sudo 下运行了 startx，但是在重启后我 startx 之后连按三次Cltr+c居然成功的进入图形界面了 QWQ, 对应的图片是我第一次出事故的时候拍的)
-
-
-2-b. 问题剖析
-在 root 权限下误输入了 startx, 导致 /home/xxx/.Xauthority 文件权限被更改，普通用户无权访问
-
-2-c. 解决方法
-在普通用户模式下运行
- 
-    
-      
-      
-      
-    
-    BASH
-  
-    
-   sudo chown 你的用户名 ~/.Xauthoritychmod 777 ~/.Xauthority 
-之后运行startx，就可以看到你的 X11 界面了
-]]></content>
-      <categories>
-        <category>Tech</category>
-        <category>Archlinux</category>
-      </categories>
-      <tags>
-        <tag>Tech</tag>
-        <tag>Archlinu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Archlinux 台式机 传统 bios 启动模式 多系统安装 学习心得</title>
     <url>/article/fc27d993/</url>
     <content><![CDATA[Archlinux 台式机 bios 启动 多系统安装 学习心得
@@ -433,6 +358,126 @@ Archlinux 无法上网
       </tags>
   </entry>
   <entry>
+    <title>Archlinux 使用过程遇到的一些坑</title>
+    <url>/article/23109/</url>
+    <content><![CDATA[Archlinux 使用过程遇到的一些问题
+这个文章主要总结我在日常使用 Archlinux 中遇到的问题，希望对你使用 Archlinux 有所帮助
+本文章会持续更新
+1. 滚挂
+我高中生住宿，每次回来基本已经过了十几天，滚挂的可能性很大。
+1-a. 问题描述：
+这个问题我遇到过两次，导致的结果要么是 boot 分区识别不了，或者内核出错，还有可能是其他原因 (我暂时还没有遇到过: D)
+1-b 问题剖析
+去网上找了资料，问题是长时间不更新系统并且更新系统的时候使用的是pacman -Syyu
+1-c. 解决方法:
+1-c-1.boot 分区无法识别
+做一个 Archlinux 的 liveCD，进入 archiso 之后
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   mount /dev/系统硬盘号 /mntarch-chroot /mnt 
+进入系统,pacman -Sy ntfs-3g 然后exit,reboot 完事！
+1-c-2. 内核出错
+后续整理
+1-b-3. 避免问题复发
+①每次进行系统更新时使用pacman -Syu而不是 - Syyu
+②如果更新文件很多，一时半会找不到内核是否需要更新，那么在更新完之后可以执行
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   grub-install /dev/sda &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg（传统BIOS启动模式） 
+2.X11 无法启动
+只针对使用 Xorg 图形管理器的朋友
+有些朋友可能和我一样，不喜欢让 xorg 自启动，其实这样做也有诸多好处，一是在系统出问题的时候可以很方便的进行修复，二者有的时候不需要用到图形界面
+2-a. 问题描述
+在 tty 中普通用户 / 超级用户运行startx无法启动，显示.Xauthority 不可写 (/home/xxx/.Xauthority not writeable)，重启后再次运行该命令显示锁定.Xauthority 文件超时 (timeout in locking authority file /home/xxx/.Xauthority)，等待许久 xorg 服务终于启动，但是黑屏
+(为了演示我重新在 sudo 下运行了 startx，但是在重启后我 startx 之后连按三次Cltr+c居然成功的进入图形界面了 QWQ, 对应的图片是我第一次出事故的时候拍的)
+
+
+2-b. 问题剖析
+在 root 权限下误输入了 startx, 导致 /home/xxx/.Xauthority 文件权限被更改，普通用户无权访问
+
+2-c. 解决方法
+在普通用户模式下运行
+ 
+    
+      
+      
+      
+    
+    BASH
+  
+    
+   sudo chown 你的用户名 ~/.Xauthoritychmod 777 ~/.Xauthority 
+之后运行startx，就可以看到你的 X11 界面了
+]]></content>
+      <categories>
+        <category>Tech</category>
+        <category>Archlinux</category>
+      </categories>
+      <tags>
+        <tag>Tech</tag>
+        <tag>Archlinu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
+    <url>/article/37988/</url>
+    <content><![CDATA[前引
+在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取
+注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
+
+
+本程序都能干些什么？
+1.adb 相关工具
+1.1 相关运行库以及万能手机驱动的安装
+1.2 各种重启
+1.3 运行 shell
+1.4 恢复出厂
+1.5 安装 busybox
+1.6 scrcpy
+1.7 oem 解锁
+1.8 fastboot 刷机
+1.9 magisk 修补 boot 方式安装
+1.10 sideload 线刷
+2. 一些民间搜罗到的游戏
+2.1 井字棋
+2.2 勇士大闯关
+2.3 反恐金人
+2.4 寻宝
+2.5 梦幻西游
+2.6 米币冒险
+2.7 记忆游戏
+2.8 谜之拼图
+2.9 赌马场
+还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
+点击下面链接下载
+Toolbox-v1.8.1.8
+提取码: 1024
+网页端历史版本
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>Program</tag>
+        <tag>batch</tag>
+        <tag>adb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CTFHub 小白题目练习_Web 篇</title>
     <url>/article/44884/</url>
     <content><![CDATA[0. 前言
@@ -771,51 +816,6 @@ Cookie 欺骗、认证、伪造
         <tag>CTF</tag>
         <tag>Writeup</tag>
         <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
-    <url>/article/37988/</url>
-    <content><![CDATA[前引
-在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取
-注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
-
-
-本程序都能干些什么？
-1.adb 相关工具
-1.1 相关运行库以及万能手机驱动的安装
-1.2 各种重启
-1.3 运行 shell
-1.4 恢复出厂
-1.5 安装 busybox
-1.6 scrcpy
-1.7 oem 解锁
-1.8 fastboot 刷机
-1.9 magisk 修补 boot 方式安装
-1.10 sideload 线刷
-2. 一些民间搜罗到的游戏
-2.1 井字棋
-2.2 勇士大闯关
-2.3 反恐金人
-2.4 寻宝
-2.5 梦幻西游
-2.6 米币冒险
-2.7 记忆游戏
-2.8 谜之拼图
-2.9 赌马场
-还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
-点击下面链接下载
-Toolbox-v1.8.1.8
-提取码: 1024
-网页端历史版本
-]]></content>
-      <categories>
-        <category>Tech</category>
-      </categories>
-      <tags>
-        <tag>Program</tag>
-        <tag>batch</tag>
-        <tag>adb</tag>
       </tags>
   </entry>
   <entry>
